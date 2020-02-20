@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "noEmit": false,
+    "outDir": "build",
+    "declaration": false,
+    "target": "esnext",
+    //"module": "commonjs",
+    //"jsx": "react",
+    "experimentalDecorators": true,
+    //"strictNullChecks": true,
+    "emitDecoratorMetadata": true,
+    //    "reactNamespace": "__React"
+    "lib": [
+      "es6",
+      "es2015.proxy",
+      "es2015.promise",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "**/*",
+  ]
+}
