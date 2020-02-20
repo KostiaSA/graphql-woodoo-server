@@ -221,8 +221,7 @@ export class Schema {
             defStr.push(`type ${this.getTableObjectAlias(table)} {${fields.join(" ")}}`);
             queryStr.push(`${this.getTableObjectAlias(table)}: ${this.getTableObjectAlias(table)}`);
 
-            defStr.push(`type ${this.getTableArrayAlias(table)} {${fields.join(" ")}}`);
-            queryStr.push(`${this.getTableArrayAlias(table)}: ${this.getTableArrayAlias(table)}`);
+            queryStr.push(`${this.getTableArrayAlias(table)}: [${this.getTableObjectAlias(table)}]`);
         }
 
         return defStr.join(" ") + ` type Query {${queryStr.join(" ")}}`;
