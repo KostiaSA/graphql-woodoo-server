@@ -30,7 +30,7 @@ export class SqlSelectBuilder {
 
         let sql: string[] = [];
 
-        sql.push(levelPads + "select\n");
+        sql.push(levelPads + "select top 20 \n");
         sql.push(this.fields.toString(",\n", "    "));
         sql.push("\n");
         sql.push(levelPads + "from\n");

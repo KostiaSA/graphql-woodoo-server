@@ -1,49 +1,49 @@
 //var { graphql, buildSchema } = require('graphql');
 import { graphql, buildSchema, parse, GraphQLResolveInfo, SelectionNode } from 'graphql';
 import { Args, SqlResolver } from './resolver/SqlResolver';
-import { schema } from './schema/schema';
+import { Schema } from './schema/schema';
 const { ApolloServer, gql } = require('apollo-server');
 
 // Construct a schema, using GraphQL schema language
-var schema1 = gql`
+// var schema1 = gql`
 
 
-type PodrVid {
-    podrvid_id: Int!
-    podrvid_name: String!
-}
+// type PodrVid {
+//     podrvid_id: Int!
+//     podrvid_name: String!
+// }
 
-type Podr {
-    podr_number: Int!
-    podr_name: String!
-    podr_description: String!
-    vid:PodrVid
-}
+// type Podr {
+//     podr_number: Int!
+//     podr_name: String!
+//     podr_description: String!
+//     vid:PodrVid
+// }
 
-type Query {
-    podrs(p1:String, p2:String): [Podr]
-}
+// type Query {
+//     podrs(p1:String, p2:String): [Podr]
+// }
 
-`;
+// `;
 
-debugger
+// debugger
 // The root provides a resolver function for each API endpoint
-var root_resolver = {
+// var root_resolver = {
 
-    Query: {
-        podrs: async (parent: any, args: Args, context: any, info: GraphQLResolveInfo) => {
+//     Query: {
+//         podrs: async (parent: any, args: Args, context: any, info: GraphQLResolveInfo) => {
 
-            let r = new SqlResolver(args, info);
-            await r.resolve_query();
+//             let r = new SqlResolver(args, info);
+//             await r.resolve_query();
 
-            // let xxx = c.fieldName;
-            // let yyy = c.fieldNodes[0].selectionSet.selections.map((item: any) => item.name.value).join();
-            // //console.log("select", yyy, "from", xxx);
-            // debugger
-            return [{ podr_number: "1", podr_name: "2222222222", vid: { podrvid_id: "xxx", podrvid_name: "podrvid_name111" } }];
-        }
-    },
-};
+//             // let xxx = c.fieldName;
+//             // let yyy = c.fieldNodes[0].selectionSet.selections.map((item: any) => item.name.value).join();
+//             // //console.log("select", yyy, "from", xxx);
+//             // debugger
+//             return [{ podr_number: "1", podr_name: "2222222222", vid: { podrvid_id: "xxx", podrvid_name: "podrvid_name111" } }];
+//         }
+//     },
+// };
 
 // let q = `
 // query Q1 { 
@@ -66,15 +66,27 @@ var root_resolver = {
 // });
 
 
-let s = schema;
+let s = new Schema();
 console.log("==============================================================");
 console.log(s.createGraphQLSchema());
 console.log("==============================================================");
 
-const server = new ApolloServer({ typeDefs: schema1, resolvers: root_resolver });
+//let x = gql(s.createGraphQLSchema());
+
+const server = new ApolloServer({ typeDefs: gql(s.createGraphQLSchema()), resolvers: s.createGraphQLResolvers() });
 
 
 async function start() {
+
+    // console.time('1');
+    // let xxx = await s.sqlExecute("бухта-wms", "select top 10 Номер,Название from Организация");
+    // console.timeEnd('1');
+    // console.time('2');
+    // let yyy = await s.sqlExecute("бухта-wms", "select top 10 Номер,Название from Организация");
+    // console.timeEnd('2');
+    // console.time('3');
+    // let zzz = await s.sqlExecute("бухта-wms", "select top 10 Номер,Название from Организация");
+    // console.timeEnd('3');
 
     let p = await server.listen(4000);
     console.log(`graphql-woodoo server ready at ${p.url}`);
