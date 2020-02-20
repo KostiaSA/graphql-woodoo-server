@@ -25,7 +25,7 @@ export class SqlResolver {
     }
 
     async resolve_query(): Promise<any> {
-
+        debugger
         let tableName = this.info.fieldName;
         this.sql.from.addLine(tableName);
 

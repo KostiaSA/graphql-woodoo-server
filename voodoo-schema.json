@@ -1,0 +1,1 @@
+{"databases":[{"name":"бухта-wms","prefix":"wms","type":"mssql","connection":{"host":"dark\\sql2012","username":"sa","password":"","database":"BuhtaWmsWeb2020"}}],"tables":[{"dbname":"бухта-wms","name":"Сотрудник","object_alias":"sotdrudnik","array_alias":"sotdrudniki","columns":[{"name":"Номер","alias":"num"},{"name":"Фамилия","alias":"fa"},{"name":"Имя","alias":"im"}]}]}

@@ -24,11 +24,5 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "jsx": "preserve",
-  },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "**/*",
-  ]
+  }
 }

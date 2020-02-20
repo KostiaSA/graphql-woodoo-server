@@ -1,14 +1,15 @@
 {
   "name": "voodoo-server",
   "version": "0.1.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon build/server.js",
-    "debug-in-chrome": "node --inspect --inspect-brk build/server.js"
+    "dev": "node build/voodoo-server/server.js",
+    "debug-in-chrome": "node --inspect   --inspect-brk build/voodoo-server/server.js"
   },
   "dependencies": {
     "@types/node": "^13.7.4",
-    "graphql": "^14.6.0"
+    "apollo-server": "^2.10.1",
+    "graphql": "^14.6.0",
+    "mssql": "^6.1.0"
   }
 }

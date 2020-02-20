@@ -1,9 +1,11 @@
 //var { graphql, buildSchema } = require('graphql');
 import { graphql, buildSchema, parse, GraphQLResolveInfo, SelectionNode } from 'graphql';
 import { Args, SqlResolver } from './resolver/SqlResolver';
+import { schema } from './schema/schema';
+const { ApolloServer, gql } = require('apollo-server');
 
 // Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
+var schema1 = gql`
 
 
 type PodrVid {
@@ -22,49 +24,64 @@ type Query {
     podrs(p1:String, p2:String): [Podr]
 }
 
-`);
+`;
 
+debugger
 // The root provides a resolver function for each API endpoint
 var root_resolver = {
-    podrs: async (a: Args, b: any, c: GraphQLResolveInfo) => {
 
-        let r = new SqlResolver(a, c);
-        await r.resolve_query();
+    Query: {
+        podrs: async (parent: any, args: Args, context: any, info: GraphQLResolveInfo) => {
 
-        let xxx = c.fieldName;
-        let yyy = c.fieldNodes[0].selectionSet.selections.map((item: any) => item.name.value).join();
-        //console.log("select", yyy, "from", xxx);
-        debugger
-        return 'Hello world12!';
+            let r = new SqlResolver(args, info);
+            await r.resolve_query();
+
+            // let xxx = c.fieldName;
+            // let yyy = c.fieldNodes[0].selectionSet.selections.map((item: any) => item.name.value).join();
+            // //console.log("select", yyy, "from", xxx);
+            // debugger
+            return [{ podr_number: "1", podr_name: "2222222222", vid: { podrvid_id: "xxx", podrvid_name: "podrvid_name111" } }];
+        }
     },
 };
 
-let q = `
-query Q1 { 
-    podrs (p1:"param1_value",p2:"param1_value") {
-        podr_number
-        podr_name
-        vid {
-           podrvid_name
-        }
-    }
-}
-`;
+// let q = `
+// query Q1 { 
+//     podrs (p1:"param1_value",p2:"param1_value") {
+//         podr_number
+//         podr_name
+//         vid {
+//            podrvid_name
+//         }
+//     }
+// }
+// `;
 
 
-let ast = parse(q);
+//let ast = parse(q);
 
 // // Run the GraphQL query '{ hello }' and print out the response
 // graphql(schema, '{ hello }', root).then((response: any) => {
 //     console.log(response);
 // });
 
-debugger
+
+let s = schema;
+console.log("==============================================================");
+console.log(s.createGraphQLSchema());
+console.log("==============================================================");
+
+const server = new ApolloServer({ typeDefs: schema1, resolvers: root_resolver });
+
 
 async function start() {
-    let response = await graphql(schema, q, root_resolver);
-    debugger
-    console.log(response);
+
+    let p = await server.listen(4000);
+    console.log(`graphql-woodoo server ready at ${p.url}`);
+
+    // let response = await graphql(schema, q, root_resolver);
+    // debugger
+    // console.log(response);
 }
 
-start().then();
+start();
