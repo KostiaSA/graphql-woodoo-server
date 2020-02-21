@@ -39,15 +39,54 @@ export class Schema {
                     {
                         name: "Номер",
                         alias: "num",
+                        type: "StringValue",
+                        sql_type: "VarChar",
                     },
                     {
                         name: "Фамилия",
                         alias: "fa",
+                        type: "StringValue",
+                        sql_type: "VarChar",
                     },
                     {
                         name: "Имя",
                         alias: "im",
+                        type: "StringValue",
+                        sql_type: "VarChar",
                     }
+                    ,
+                    {
+                        name: "_Подразделение",
+                        alias: "podr_id",
+                        type: "IntValue",
+                        sql_type: "Int",
+                    }
+                ]
+            },
+            {
+                dbname: "бухта-wms",
+                name: "Подразделение",
+                object_alias: "podr",
+                array_alias: "podrs",
+                columns: [
+                    {
+                        name: "Ключ",
+                        alias: "id",
+                        type: "IntValue",
+                        sql_type: "Int",
+                    },
+                    {
+                        name: "Номер",
+                        alias: "num",
+                        type: "StringValue",
+                        sql_type: "VarChar",
+                    },
+                    {
+                        name: "Название",
+                        alias: "name",
+                        type: "StringValue",
+                        sql_type: "VarChar",
+                    },
                 ]
             }
             ]
@@ -204,7 +243,8 @@ export class Schema {
             let fields: string[] = [];
             for (let col of table.columns) {
 
-                fields.push(`${this.getTableColAlias(col)}(where_eq:String):String`);
+                let typeStr = col.type.replace("Value", "");
+                fields.push(`${this.getTableColAlias(col)}(where_eq:${typeStr}):${typeStr}`);
             }
 
             defStr.push(`type ${this.getTableObjectAlias(table)} {${fields.join(" ")}}`);
