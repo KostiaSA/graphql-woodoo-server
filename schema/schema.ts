@@ -1,4 +1,4 @@
-import { ISchema, ITable, IDatabase, IColumn } from "../../voodoo-shared/ISchema";
+import { ISchema, ITable, IDatabase, IColumn, DatabaseType } from "../../voodoo-shared/ISchema";
 import { GraphQLSchema, GraphQLObjectType, GraphQLObjectTypeConfig, Thunk, isType, GraphQLResolveInfo } from "graphql";
 import { Args, SqlResolver } from "../resolver/SqlResolver";
 var fs = require('fs');
@@ -179,17 +179,6 @@ export class Schema {
     createGraphQLResolvers(): any {
         let ret: any = {
             Query: {
-                // podrs: async (parent: any, args: Args, context: any, info: GraphQLResolveInfo) => {
-
-                //     let r = new SqlResolver(args, info);
-                //     await r.resolve_query();
-
-                //     // let xxx = c.fieldName;
-                //     // let yyy = c.fieldNodes[0].selectionSet.selections.map((item: any) => item.name.value).join();
-                //     // //console.log("select", yyy, "from", xxx);
-                //     // debugger
-                //     return [{ podr_number: "1", podr_name: "2222222222", vid: { podrvid_id: "xxx", podrvid_name: "podrvid_name111" } }];
-                // }
             },
         };
 
@@ -215,7 +204,7 @@ export class Schema {
             let fields: string[] = [];
             for (let col of table.columns) {
 
-                fields.push(`${this.getTableColAlias(col)}:String`);
+                fields.push(`${this.getTableColAlias(col)}(where_eq:String):String`);
             }
 
             defStr.push(`type ${this.getTableObjectAlias(table)} {${fields.join(" ")}}`);
@@ -293,6 +282,21 @@ export class Schema {
         }
         return pool.request().query(sql);
         //const pool = new sql.ConnectionPool(config)
+
+    }
+
+    getDatabaseType(dbname: string) {
+        return this.getDatabase(dbname).type;
+    }
+
+    stringAsSql(dbtype: DatabaseType, str: string): string {
+        if (typeof str != "string")
+            throw new Error("stringAsSql(): parameter 'str' is not a string");
+
+        if (dbtype == "mssql")
+            return "'" + str.replace(/'/g, "''") + "'";
+        else
+            throw new Error("todo: stringAsSql dbtype == mssql");
 
     }
 }

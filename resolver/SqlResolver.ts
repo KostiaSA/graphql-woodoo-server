@@ -28,25 +28,42 @@ export class SqlResolver {
     }
 
     async resolve_query(): Promise<any> {
-        debugger
         let tableAlias = this.info.fieldName;
         let table = this.schema.getTableByArrayAlias(tableAlias);
+        let database = this.schema.getTableDatabase(table);
 
         this.sql.from.addLine(table.name + " AS " + tableAlias);
 
         for (let field of this.info.fieldNodes[0].selectionSet.selections) {
             if (field.kind == 'Field') {
                 let f = field as FieldNode;
+                let f_alias = f.alias || f.name.value;
                 if (f.name.kind == "Name") {
-                    let colAlias = f.name.value;
-                    let col = this.schema.getTableColumnByAlias(table, colAlias);
-                    this.sql.fields.add(col.name + " AS " + f.name.value);
+                    let col = this.schema.getTableColumnByAlias(table, f.name.value);
+                    this.sql.fields.add(col.name + " AS " + f_alias);
+
+                    for (let arg of f.arguments) {
+                        if (arg.kind != "Argument")
+                            throw "internal argument error";
+                        if (arg.name.value == "where_eq") {
+                            let valueAsSql: string;
+                            if (arg.value.kind == "StringValue") {
+                                valueAsSql = this.schema.stringAsSql(database.type, arg.value.value);
+                            }
+                            else
+                                throw new Error("todo: arg.value.kind==StringValue");
+
+                            this.sql.where.add(col.name + "=" + valueAsSql);
+                        }
+                        else
+                            throw new Error("todo: where_eq");
+                    }
                 }
                 else
-                    throw "todo:"
+                    throw new Error("todo: f.name.kind == Name");
             }
             else
-                throw "todo:"
+                throw new Error("todo: field.kind == 'Field'");
         }
 
         console.log("this.sql.toSql()");
