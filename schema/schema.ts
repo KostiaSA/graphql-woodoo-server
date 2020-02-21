@@ -299,6 +299,17 @@ export class Schema {
             throw new Error("todo: stringAsSql dbtype == mssql");
 
     }
+
+    numberAsSql(dbtype: DatabaseType, value: number): string {
+        if (typeof value != "number")
+            throw new Error("stringAsSql(): parameter 'value' is not a number");
+
+        if (dbtype == "mssql")
+            return value.toString();
+        else
+            throw new Error("todo: numberAsSql dbtype == mssql");
+
+    }
 }
 
 //export var schema: Schema = new Schema();

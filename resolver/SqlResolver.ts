@@ -52,6 +52,9 @@ export class SqlResolver {
                             if (arg.value.kind == "StringValue") {
                                 valueAsSql = this.schema.stringAsSql(database.type, arg.value.value);
                             }
+                            else if (arg.value.kind == "IntValue" || arg.value.kind == "FloatValue") {
+                                valueAsSql = this.schema.numberAsSql(database.type, Number.parseFloat(arg.value.value));
+                            }
                             else
                                 throw new Error("todo: arg.value.kind==StringValue");
 
