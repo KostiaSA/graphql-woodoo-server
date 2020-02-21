@@ -1,8 +1,15 @@
-import { ISchema, ITable, IDatabase, IColumn, DatabaseType } from "../../voodoo-shared/ISchema";
+import { ISchema, ITable, IDatabase, IColumn, DatabaseType, GraphqlType } from "../../voodoo-shared/ISchema";
 import { GraphQLSchema, GraphQLObjectType, GraphQLObjectTypeConfig, Thunk, isType, GraphQLResolveInfo } from "graphql";
 import { Args, SqlResolver } from "../resolver/SqlResolver";
 var fs = require('fs');
 var mssql = require('mssql')
+
+export interface IWhereOper {
+    data_types?: GraphqlType[];
+    all_types?: boolean;
+    sql_string: string;
+    p1_is_array?: boolean;
+}
 
 export class Schema {
     info: ISchema;
@@ -13,6 +20,52 @@ export class Schema {
     databaseByName: { [db_name: string]: IDatabase };
     mssql_pool: { [db_name: string]: any };
     tableColumnByAlias: { [table_name_and_col_alias: string]: IColumn };
+
+    where_opers: { [where_param_name: string]: IWhereOper } = {
+        where_eq: {
+            all_types: true,
+            data_types: ["IntValue", "FloatValue", "StringValue"],
+            sql_string: "%0=%1",
+        },
+        where_not_eq: {
+            data_types: ["IntValue", "FloatValue", "StringValue"],
+            sql_string: "%0<>%1",
+        },
+        where_between: {
+            data_types: ["IntValue", "FloatValue", "StringValue"],
+            sql_string: "%0 BETWEEN %1",
+            p1_is_array: true
+        },
+        where_gt: {
+            data_types: ["IntValue", "FloatValue", "StringValue"],
+            sql_string: "%0>%1",
+        },
+        where_gte: {
+            data_types: ["IntValue", "FloatValue", "StringValue"],
+            sql_string: "%0>=%1",
+        },
+        where_lt: {
+            data_types: ["IntValue", "FloatValue", "StringValue"],
+            sql_string: "%0<%1",
+        },
+        where_lte: {
+            data_types: ["IntValue", "FloatValue", "StringValue"],
+            sql_string: "%0<=%1",
+        },
+        where_is_null: {
+            all_types: true,
+            sql_string: "%0 IS NULL",
+        },
+        where_is_not_null: {
+            all_types: true,
+            sql_string: "%0 IS NOT NULL",
+        },
+        where_in: {
+            data_types: ["IntValue", "FloatValue", "StringValue"],
+            sql_string: "%0 IN (%1)",
+            p1_is_array: true
+        },
+    }
 
     constructor() {
         console.log("Schema constr");
@@ -53,14 +106,19 @@ export class Schema {
                         alias: "im",
                         type: "StringValue",
                         sql_type: "VarChar",
-                    }
-                    ,
+                    },
                     {
                         name: "_Подразделение",
                         alias: "podr_id",
                         type: "IntValue",
                         sql_type: "Int",
-                    }
+                    },
+                    // {
+                    //     name: "_Подразделение",
+                    //     alias: "podr_id",
+                    //     type: "IntValue",
+                    //     sql_type: "Int",
+                    // }
                 ]
             },
             {
@@ -244,7 +302,25 @@ export class Schema {
             for (let col of table.columns) {
 
                 let typeStr = col.type.replace("Value", "");
-                fields.push(`${this.getTableColAlias(col)}(where_eq:${typeStr}):${typeStr}`);
+
+                let where_params: string[] = [];
+                for (let where_oper_name in this.where_opers) {
+                    let where_oper = this.where_opers[where_oper_name];
+                    if (where_oper.all_types || where_oper.data_types.indexOf(col.type) > -1) {
+                        if (where_oper.p1_is_array)
+                            where_params.push(where_oper_name + ":[" + typeStr + "]");
+                        else
+                            where_params.push(where_oper_name + ":" + typeStr);
+                    }
+
+                }
+
+                where_params.push("is_hidden:Boolean");
+
+                if (where_params.length == 0)
+                    fields.push(`${this.getTableColAlias(col)}:${typeStr}`);
+                else
+                    fields.push(`${this.getTableColAlias(col)}(${where_params.join(",")}):${typeStr}`);
             }
 
             defStr.push(`type ${this.getTableObjectAlias(table)} {${fields.join(" ")}}`);
