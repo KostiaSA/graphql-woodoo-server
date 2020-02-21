@@ -37,10 +37,12 @@ export class SqlResolver {
         for (let field of this.info.fieldNodes[0].selectionSet.selections) {
             if (field.kind == 'Field') {
                 let f = field as FieldNode;
-                let f_alias = f.alias || f.name.value;
+                // let f_alias = f.name.value;
+                // if (f.alias && f.alias.value)
+                //     f_alias = f.alias.value;
                 if (f.name.kind == "Name") {
                     let col = this.schema.getTableColumnByAlias(table, f.name.value);
-                    this.sql.fields.add(col.name + " AS " + f_alias);
+                    this.sql.fields.add(col.name + " AS " + f.name.value);
 
                     for (let arg of f.arguments) {
                         if (arg.kind != "Argument")
