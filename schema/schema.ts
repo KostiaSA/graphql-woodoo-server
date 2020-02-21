@@ -397,12 +397,13 @@ export class Schema {
                 database: db.connection.database,
                 pool: {
                     max: 100,
-                    min: 0,
-                    idleTimeoutMillis: 30000
+                    min: 10,
+                    idleTimeoutMillis: 3600 * 1000
                 }
             }
             pool = new mssql.ConnectionPool(config);
             await pool.connect();
+            this.mssql_pool[db.name] = pool;
         }
         return pool.request().query(sql);
         //const pool = new sql.ConnectionPool(config)
