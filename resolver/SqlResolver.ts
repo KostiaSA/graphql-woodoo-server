@@ -31,8 +31,10 @@ export class SqlResolver {
         let tableAlias = this.info.fieldName;
         let table = this.schema.getTableByArrayAlias(tableAlias);
         let database = this.schema.getTableDatabase(table);
+        let rootFromAlias = tableAlias;
 
-        this.sql.from.addLine(table.name + " AS " + tableAlias);
+
+        this.sql.from.addLine(this.schema.identifierAsSql(database.type, table.name) + " AS " + rootFromAlias);
 
         for (let field of this.info.fieldNodes[0].selectionSet.selections) {
             if (field.kind == 'Field') {
@@ -42,7 +44,7 @@ export class SqlResolver {
                 //     f_alias = f.alias.value;
                 if (f.name.kind == "Name") {
                     let col = this.schema.getTableColumnByAlias(table, f.name.value);
-                    this.sql.fields.add(col.name + " AS " + f.name.value);
+                    this.sql.fields.add(rootFromAlias + "." + this.schema.identifierAsSql(database.type, col.name) + " AS " + f.name.value);
 
                     for (let arg of f.arguments) {
                         if (arg.kind != "Argument")
@@ -58,7 +60,7 @@ export class SqlResolver {
                             else
                                 throw new Error("todo: arg.value.kind==StringValue");
 
-                            this.sql.where.add(col.name + "=" + valueAsSql);
+                            this.sql.where.add(rootFromAlias + "." + this.schema.identifierAsSql(database.type, col.name) + "=" + valueAsSql);
                         }
                         else
                             throw new Error("todo: where_eq");

@@ -289,6 +289,17 @@ export class Schema {
         return this.getDatabase(dbname).type;
     }
 
+    identifierAsSql(dbtype: DatabaseType, sql_identifier: string): string {
+        if (typeof sql_identifier != "string")
+            throw new Error("stringAsSql(): parameter 'sql_identifier' is not a string");
+
+        if (dbtype == "mssql")
+            return "[" + sql_identifier.replace(/]/g, "]]") + "]";
+        else
+            throw new Error("todo: stringAsSql dbtype == mssql");
+
+    }
+
     stringAsSql(dbtype: DatabaseType, str: string): string {
         if (typeof str != "string")
             throw new Error("stringAsSql(): parameter 'str' is not a string");
