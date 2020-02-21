@@ -65,6 +65,14 @@ export class Schema {
             sql_string: "%0 IN (%1)",
             p1_is_array: true
         },
+        where_like: {
+            data_types: ["StringValue"],
+            sql_string: "%0 LIKE %1",
+        },
+        where_not_like: {
+            data_types: ["StringValue"],
+            sql_string: "%0 NOT LIKE %1",
+        },
     }
 
     constructor() {
