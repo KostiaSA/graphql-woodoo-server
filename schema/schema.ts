@@ -233,6 +233,48 @@ export class Schema {
                     },
                 ]
             },
+            {
+                dbname: "бухта-wms",
+                dbo: "dbo",
+                name: "Проводка",
+                object_alias: "prov",
+                array_alias: "provs",
+                columns: [
+                    {
+                        name: "Ключ",
+                        alias: "id",
+                        type: "IntValue",
+                        sql_type: "VarChar",
+                    },
+                    {
+                        name: "Дб субконто 2",
+                        alias: "db_subconto2",
+                        type: "IntValue",
+                        sql_type: "Int",
+                    },
+                    {
+                        name: "Дебет",
+                        alias: "debet",
+                        type: "StringValue",
+                        sql_type: "VarChar",
+                    },
+                    {
+                        name: "tmc",
+                        type: "ObjectValue",
+                        ref_db: "бухта-wms",
+                        ref_table: "ТМЦ",
+                        ref_columns: [{
+                            column: "Дб субконто 2", ref_column: "Ключ"
+                        }]
+                    },
+                    {
+                        name: "Кредит",
+                        alias: "kredit",
+                        type: "StringValue",
+                        sql_type: "VarChar",
+                    },
+                ]
+            },
             ]
         }
         this.saveToJson();
