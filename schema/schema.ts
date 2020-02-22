@@ -121,12 +121,12 @@ export class Schema {
                         type: "IntValue",
                         sql_type: "Int",
                     },
-                    // {
-                    //     name: "_Подразделение",
-                    //     alias: "podr_id",
-                    //     type: "IntValue",
-                    //     sql_type: "Int",
-                    // }
+                    {
+                        name: "_Подразделение",
+                        alias: "podr_id",
+                        type: "IntValue",
+                        sql_type: "Int",
+                    }
                 ]
             },
             {
@@ -315,7 +315,9 @@ export class Schema {
                 for (let where_oper_name in this.where_opers) {
                     let where_oper = this.where_opers[where_oper_name];
                     if (where_oper.all_types || where_oper.data_types.indexOf(col.type) > -1) {
-                        if (where_oper.p1_is_array)
+                        if (where_oper_name == "where_is_null" || where_oper_name == "where_is_not_null")
+                            where_params.push(where_oper_name + ":Boolean");
+                        else if (where_oper.p1_is_array)
                             where_params.push(where_oper_name + ":[" + typeStr + "]");
                         else
                             where_params.push(where_oper_name + ":" + typeStr);
@@ -395,6 +397,7 @@ export class Schema {
                 password: db.connection.password,
                 server: db.connection.host,
                 database: db.connection.database,
+                requestTimeout: 1000 * 1800,
                 pool: {
                     max: 100,
                     min: 10,
