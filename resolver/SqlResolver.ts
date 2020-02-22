@@ -128,7 +128,13 @@ export class SqlResolver {
                     else
                         field_alias = f.name.value + "_" + this.sql.fields.sql.length;
 
-                    this.rowMapper.push(`${f.name.value}:row.${field_alias},`);
+                    if (col.sql_type == "Date" || col.sql_type == "SmallDateTime")
+                        this.rowMapper.push(`${f.name.value}:row.${field_alias}.toISOString().substr(0,10),`);
+                    else if (col.sql_type == "DateTime" || col.sql_type == "DateTime2" || col.sql_type == "DateTimeOffset")
+                        this.rowMapper.push(`${f.name.value}:row.${field_alias}.toISOString(),`);
+                    else
+                        this.rowMapper.push(`${f.name.value}:row.${field_alias},`);
+
                     this.sql.fields.add(fromAlias + "." + this.schema.identifierAsSql(database.type, col.name) + " AS " + field_alias);
                 }
 
@@ -161,10 +167,14 @@ export class SqlResolver {
         console.log("this.sql.toSql()");
         console.log(this.sql.toSql());
         let execute_result = await this.schema.sqlExecute("бухта-wms", this.sql.toSql());
-        //console.log(execute_result.recordset.map( this.rowMapper));
-        //console.log(this.rowMapper.join("\n"));
+
 
         let mapperFunc = new Function(this.rowMapper.join("\n"))();
+
+        console.log(execute_result.recordset);//.map( this.rowMapper));
+        console.log(execute_result.recordset.map(mapperFunc));
+        console.log(this.rowMapper.join("\n"));
+
         return execute_result.recordset.map(mapperFunc);
     }
 }

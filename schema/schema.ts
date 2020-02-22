@@ -241,10 +241,28 @@ export class Schema {
                 array_alias: "provs",
                 columns: [
                     {
+                        name: "_id",
+                        alias: "_id",
+                        type: "StringValue",
+                        sql_type: "UniqueIdentifier",
+                    },
+                    {
                         name: "Ключ",
                         alias: "id",
                         type: "IntValue",
                         sql_type: "VarChar",
+                    },
+                    {
+                        name: "Дата",
+                        alias: "date",
+                        type: "StringValue",
+                        sql_type: "Date",
+                    },
+                    {
+                        name: "Сумма",
+                        alias: "summa",
+                        type: "FloatValue",
+                        sql_type: "Money",
                     },
                     {
                         name: "Дб субконто 2",
