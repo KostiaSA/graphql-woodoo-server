@@ -84,10 +84,14 @@ export class Schema {
                     prefix: "wms",
                     type: "mssql",
                     connection: {
-                        host: "dark\\sql2012",
-                        username: "sa",
-                        password: "",
-                        database: "BuhtaWmsWeb2020",
+                        // host: "dark\\sql2012",
+                        // username: "sa",
+                        // password: "",
+                        // database: "BuhtaWmsWeb2020",
+                        host: "localhost",
+                        username: "sa2",
+                        password: "sonyk",
+                        database: "woodoo",
                     }
                 }
             ],
@@ -116,16 +120,19 @@ export class Schema {
                         sql_type: "VarChar",
                     },
                     {
-                        name: "_Подразделение",
+                        name: "ЗП Подразделение",
                         alias: "podr_id",
                         type: "IntValue",
                         sql_type: "Int",
                     },
                     {
-                        name: "_Подразделение",
-                        alias: "podr_id",
-                        type: "IntValue",
-                        sql_type: "Int",
+                        name: "podr",
+                        type: "ObjectValue",
+                        ref_db: "бухта-wms",
+                        ref_table: "Подразделение",
+                        ref_columns: [{
+                            column: "ЗП Подразделение", ref_column: "Ключ"
+                        }]
                     }
                 ]
             },
@@ -154,7 +161,68 @@ export class Schema {
                         sql_type: "VarChar",
                     },
                 ]
-            }
+            },
+            {
+                dbname: "бухта-wms",
+                name: "ТМЦ",
+                object_alias: "tmc",
+                array_alias: "tmcs",
+                columns: [
+                    {
+                        name: "Номер",
+                        alias: "num",
+                        type: "StringValue",
+                        sql_type: "VarChar",
+                    },
+                    {
+                        name: "Название",
+                        alias: "name",
+                        type: "StringValue",
+                        sql_type: "VarChar",
+                    },
+                    {
+                        name: "Вид",
+                        alias: "vid_id",
+                        type: "IntValue",
+                        sql_type: "Int",
+                    },
+                    {
+                        name: "vid",
+                        type: "ObjectValue",
+                        ref_db: "бухта-wms",
+                        ref_table: "Вид ТМЦ",
+                        ref_columns: [{
+                            column: "Вид", ref_column: "Ключ"
+                        }]
+                    }
+                ]
+            },
+            {
+                dbname: "бухта-wms",
+                name: "Вид ТМЦ",
+                object_alias: "tmcvid",
+                array_alias: "tmcvids",
+                columns: [
+                    {
+                        name: "Ключ",
+                        alias: "id",
+                        type: "StringValue",
+                        sql_type: "VarChar",
+                    },
+                    {
+                        name: "Номер",
+                        alias: "num",
+                        type: "StringValue",
+                        sql_type: "VarChar",
+                    },
+                    {
+                        name: "Название",
+                        alias: "name",
+                        type: "StringValue",
+                        sql_type: "VarChar",
+                    },
+                ]
+            },
             ]
         }
         this.saveToJson();
@@ -309,28 +377,40 @@ export class Schema {
             let fields: string[] = [];
             for (let col of table.columns) {
 
-                let typeStr = col.type.replace("Value", "");
+                if (col.type == "ObjectValue") {  // fk
+                    if (col.ref_table) {
+                        let refTable = this.getTable(col.ref_db, col.ref_table);
 
-                let where_params: string[] = [];
-                for (let where_oper_name in this.where_opers) {
-                    let where_oper = this.where_opers[where_oper_name];
-                    if (where_oper.all_types || where_oper.data_types.indexOf(col.type) > -1) {
-                        if (where_oper_name == "where_is_null" || where_oper_name == "where_is_not_null")
-                            where_params.push(where_oper_name + ":Boolean");
-                        else if (where_oper.p1_is_array)
-                            where_params.push(where_oper_name + ":[" + typeStr + "]");
-                        else
-                            where_params.push(where_oper_name + ":" + typeStr);
+                        fields.push(`${this.getTableColAlias(col)}:${this.getTableObjectAlias(refTable)}`);
+
+                    }
+                    else
+                        throw new Error("todo: ObjectList");
+                }
+                else {
+                    let typeStr = col.type.replace("Value", "");
+
+                    let where_params: string[] = [];
+                    for (let where_oper_name in this.where_opers) {
+                        let where_oper = this.where_opers[where_oper_name];
+                        if (where_oper.all_types || where_oper.data_types.indexOf(col.type) > -1) {
+                            if (where_oper_name == "where_is_null" || where_oper_name == "where_is_not_null")
+                                where_params.push(where_oper_name + ":Boolean");
+                            else if (where_oper.p1_is_array)
+                                where_params.push(where_oper_name + ":[" + typeStr + "]");
+                            else
+                                where_params.push(where_oper_name + ":" + typeStr);
+                        }
+
                     }
 
+                    where_params.push("is_hidden:Boolean");
+
+                    if (where_params.length == 0)
+                        fields.push(`${this.getTableColAlias(col)}:${typeStr}`);
+                    else
+                        fields.push(`${this.getTableColAlias(col)}(${where_params.join(",")}):${typeStr}`);
                 }
-
-                where_params.push("is_hidden:Boolean");
-
-                if (where_params.length == 0)
-                    fields.push(`${this.getTableColAlias(col)}:${typeStr}`);
-                else
-                    fields.push(`${this.getTableColAlias(col)}(${where_params.join(",")}):${typeStr}`);
             }
 
             defStr.push(`type ${this.getTableObjectAlias(table)} {${fields.join(" ")}}`);
