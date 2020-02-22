@@ -172,6 +172,12 @@ export class Schema {
                 array_alias: "tmcs",
                 columns: [
                     {
+                        name: "Ключ",
+                        alias: "id",
+                        type: "IntValue",
+                        sql_type: "Int",
+                    },
+                    {
                         name: "Номер",
                         alias: "num",
                         type: "StringValue",

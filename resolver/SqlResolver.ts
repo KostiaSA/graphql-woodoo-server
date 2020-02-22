@@ -12,6 +12,21 @@ export class SqlResolver {
     args: Args;
     info: GraphQLResolveInfo;
     sql: SqlSelectBuilder = new SqlSelectBuilder();
+    rowMapper: string[] = [];
+
+
+    rowMapper2: any = new Function(`
+    return function (row) { return {
+      num: row.num_0,
+      name: row.name_1,
+      vid_id: row.vid_id_2,
+      vid: {
+         id: row.vid_id_3,
+         num: row.vid_num_4,
+         name: row.vid_name_5,
+      }
+    }}    
+    `)();
 
     constructor(_schema: Schema, _args: Args, _info: GraphQLResolveInfo) {
         this.schema = _schema;
@@ -57,19 +72,19 @@ export class SqlResolver {
 
     }
 
-    rowMapper(r: any) {
-        return {
-            num: r.num_0,
-            name: r.name_1,
-            vid_id: r.vid_id_2,
-            vid: {
-                id: r.vid_id_3,
-                num: r.vid_num_4,
-                name: r.vid_name_5,
-            }
-        }
+    // rowMapper(r: any) {
+    //     return {
+    //         num: r.num_0,
+    //         name: r.name_1,
+    //         vid_id: r.vid_id_2,
+    //         vid: {
+    //             id: r.vid_id_3,
+    //             num: r.vid_num_4,
+    //             name: r.vid_name_5,
+    //         }
+    //     }
 
-    }
+    // }
 
     processFieldNode(f: SelectionNode, database: IDatabase, table: ITable, col: IColumn, fromAlias: string, levelFieldName: string) {
 
@@ -84,6 +99,8 @@ export class SqlResolver {
                 let join_database = this.schema.getTableDatabase(join_table);
                 let join_fromAlias = fromAlias + "_" + join_table_alias;
 
+                this.rowMapper.push(`${f.name.value}:{`);
+
                 let joinStr = "LEFT JOIN " + this.schema.getTable3PartName(join_table) + " AS " + join_fromAlias;
                 let joinOnColumnsList: string[] = col.ref_columns.map((item) => fromAlias + ".[" + item.column + "] = " + join_fromAlias + ".[" + item.ref_column + "]");
                 let joinOnStr = "ON " + joinOnColumnsList.join(" AND ");
@@ -97,6 +114,7 @@ export class SqlResolver {
                         throw "processFieldNode(): todo: for ff.kind:" + ff.kind;
                 }
                 this.sql.from.add(joinOnStr);
+                this.rowMapper.push(`},`);
             }
             else {
                 let is_hidden = false;
@@ -129,10 +147,16 @@ export class SqlResolver {
                 }
 
                 if (!is_hidden) {
+
+                    //num: row.num_0,
+                    let field_alias: string;
                     if (levelFieldName)
-                        this.sql.fields.add(fromAlias + "." + this.schema.identifierAsSql(database.type, col.name) + " AS " + levelFieldName + "_" + f.name.value + "_" + this.sql.fields.sql.length);
+                        field_alias = levelFieldName + "_" + f.name.value + "_" + this.sql.fields.sql.length;
                     else
-                        this.sql.fields.add(fromAlias + "." + this.schema.identifierAsSql(database.type, col.name) + " AS " + f.name.value + "_" + this.sql.fields.sql.length);
+                        field_alias = f.name.value + "_" + this.sql.fields.sql.length;
+
+                    this.rowMapper.push(`${f.name.value}:row.${field_alias},`);
+                    this.sql.fields.add(fromAlias + "." + this.schema.identifierAsSql(database.type, col.name) + " AS " + field_alias);
                 }
 
             }
@@ -147,6 +171,7 @@ export class SqlResolver {
         let database = this.schema.getTableDatabase(table);
         let rootFromAlias = tableAlias;
 
+        this.rowMapper.push("return function (row) { return {");
 
         this.sql.from.addLine(this.schema.identifierAsSql(database.type, table.name) + " AS " + rootFromAlias);
 
@@ -209,11 +234,15 @@ export class SqlResolver {
             // else
             //     throw new Error("todo: field.kind == 'Field'");
         }
+        this.rowMapper.push("}}");
 
         console.log("this.sql.toSql()");
         console.log(this.sql.toSql());
         let execute_result = await this.schema.sqlExecute("бухта-wms", this.sql.toSql());
-        console.log(execute_result.recordset.map(this.rowMapper));
-        return execute_result.recordset.map(this.rowMapper);
+        //console.log(execute_result.recordset.map( this.rowMapper));
+        console.log(this.rowMapper.join("\n"));
+
+        let mapperFunc = new Function(this.rowMapper.join("\n"))();
+        return execute_result.recordset.map(mapperFunc);
     }
 }
