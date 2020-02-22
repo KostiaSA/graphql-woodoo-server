@@ -97,6 +97,7 @@ export class Schema {
             ],
             tables: [{
                 dbname: "бухта-wms",
+                dbo: "dbo",
                 name: "Сотрудник",
                 object_alias: "sotdrudnik",
                 array_alias: "sotdrudniki",
@@ -138,6 +139,7 @@ export class Schema {
             },
             {
                 dbname: "бухта-wms",
+                dbo: "dbo",
                 name: "Подразделение",
                 object_alias: "podr",
                 array_alias: "podrs",
@@ -164,6 +166,7 @@ export class Schema {
             },
             {
                 dbname: "бухта-wms",
+                dbo: "dbo",
                 name: "ТМЦ",
                 object_alias: "tmc",
                 array_alias: "tmcs",
@@ -199,6 +202,7 @@ export class Schema {
             },
             {
                 dbname: "бухта-wms",
+                dbo: "dbo",
                 name: "Вид ТМЦ",
                 object_alias: "tmcvid",
                 array_alias: "tmcvids",
@@ -206,7 +210,7 @@ export class Schema {
                     {
                         name: "Ключ",
                         alias: "id",
-                        type: "StringValue",
+                        type: "IntValue",
                         sql_type: "VarChar",
                     },
                     {
@@ -291,6 +295,16 @@ export class Schema {
         if (!ret)
             throw new Error(`Schema.getDatabase(): table '${key}' not found`);
         return ret;
+    }
+
+    getTable3PartName(table: ITable) {
+        let db = this.getDatabase(table.dbname);
+        if (db.type == "mssql") {
+            return `[${db.connection.database}].[${table.dbo}].[${table.name}]`
+        }
+        else
+            throw new Error(`getTable4PartName(): todo: for ` + db.type);
+
     }
 
     getTable(dbName: string, tableName: string): ITable {

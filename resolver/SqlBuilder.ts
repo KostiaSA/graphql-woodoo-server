@@ -34,7 +34,7 @@ export class SqlSelectBuilder {
         sql.push(this.fields.toString(",\n", "    "));
         sql.push("\n");
         sql.push(levelPads + "from\n");
-        sql.push(this.from.toString(",\n", "    "));
+        sql.push(this.from.toString("\n", "    "));
         sql.push("\n");
 
         if (this.where.toString().length > 0) {
