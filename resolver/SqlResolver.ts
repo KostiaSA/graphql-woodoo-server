@@ -145,6 +145,7 @@ export class SqlResolver {
     }
 
     async resolve_query(): Promise<any> {
+        console.time("=============resolver====================");
         let tableAlias = this.info.fieldName;
         let table = this.schema.getTableByArrayAlias(tableAlias);
         let database = this.schema.getTableDatabase(table);
@@ -164,17 +165,29 @@ export class SqlResolver {
         }
         this.rowMapper.push("}}");
 
-        console.log("this.sql.toSql()");
+
+        console.timeEnd("=============resolver====================");
         console.log(this.sql.toSql());
-        let execute_result = await this.schema.sqlExecute("бухта-wms", this.sql.toSql());
+        //console.log("this.sql.toSql()");
 
+        let execute_result: any;
+        //for (let i = 0; i < 100; i++) {
+        console.time("=============sqlExecute====================");
+        execute_result = await this.schema.sqlExecute("бухта-wms", this.sql.toSql());
+        console.timeEnd("=============sqlExecute====================");
+        //}
 
+        console.time("=============new mapper====================");
         let mapperFunc = new Function(this.rowMapper.join("\n"))();
+        console.timeEnd("=============new mapper====================");
 
-        console.log(execute_result.recordset);//.map( this.rowMapper));
-        console.log(execute_result.recordset.map(mapperFunc));
-        console.log(this.rowMapper.join("\n"));
+        //console.log(execute_result.recordset);//.map( this.rowMapper));
+        //console.log(execute_result.recordset.map(mapperFunc));
+        //console.log(this.rowMapper.join("\n"));
 
-        return execute_result.recordset.map(mapperFunc);
+        console.time("=============map====================");
+        let result = execute_result.recordset.map(mapperFunc);
+        console.timeEnd("=============map====================");
+        return result;
     }
 }
