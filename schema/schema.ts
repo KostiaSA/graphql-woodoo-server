@@ -93,7 +93,23 @@ export class Schema {
                         password: "sonyk",
                         database: "woodoo",
                     }
-                }
+                },
+                {
+                    name: "бухта-erp",
+                    prefix: "erp",
+                    type: "mssql",
+                    connection: {
+                        // host: "dark\\sql2012",
+                        // username: "sa",
+                        // password: "",
+                        // database: "BuhtaWmsWeb2020",
+                        host: "localhost",
+                        username: "sa2",
+                        password: "sonyk",
+                        database: "woodoo",
+                    }
+                },
+
             ],
             tables: [{
                 dbname: "бухта-wms",

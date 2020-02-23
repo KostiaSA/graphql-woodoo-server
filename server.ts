@@ -85,20 +85,10 @@ const server = new ApolloServer({ typeDefs: gql(s.createGraphQLSchema()), resolv
 var api_schema = gql`
 scalar JSON
 
-type PodrVid {
-    podrvid_id: Int!
-    podrvid_name: String!
-}
-
-type Podr {
-    podr_number: Int!
-    podr_name: String!
-    podr_description: String!
-    vid:PodrVid
-}
-
 type Query {
     schema: JSON
+    tables: JSON
+    databases: JSON
 }
 `;
 
@@ -106,8 +96,13 @@ var api_resolver = {
     JSON: GraphQLJSON,
     Query: {
         schema: async (parent: any, args: Args, context: any, info: GraphQLResolveInfo) => {
-
             return s.info;
+        },
+        tables: async (parent: any, args: Args, context: any, info: GraphQLResolveInfo) => {
+            return s.info.tables;
+        },
+        databases: async (parent: any, args: Args, context: any, info: GraphQLResolveInfo) => {
+            return s.info.databases;
         }
     },
 };
