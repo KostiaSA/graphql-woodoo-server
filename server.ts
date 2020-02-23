@@ -2,7 +2,12 @@
 import { graphql, buildSchema, parse, GraphQLResolveInfo, SelectionNode } from 'graphql';
 import { Args, SqlResolver } from './resolver/SqlResolver';
 import { Schema } from './schema/schema';
+
+//let express = require('express');
+//let jsonGraphqlExpress = require('json-graphql-server').default;
+
 const { ApolloServer, gql } = require('apollo-server');
+const { GraphQLJSON, GraphQLJSONObject } = require('graphql-type-json');
 
 // Construct a schema, using GraphQL schema language
 // var schema1 = gql`
@@ -76,6 +81,41 @@ console.log("==============================================================");
 const server = new ApolloServer({ typeDefs: gql(s.createGraphQLSchema()), resolvers: s.createGraphQLResolvers() });
 
 
+
+var api_schema = gql`
+scalar JSON
+
+type PodrVid {
+    podrvid_id: Int!
+    podrvid_name: String!
+}
+
+type Podr {
+    podr_number: Int!
+    podr_name: String!
+    podr_description: String!
+    vid:PodrVid
+}
+
+type Query {
+    schema: JSON
+}
+`;
+
+var api_resolver = {
+    JSON: GraphQLJSON,
+    Query: {
+        schema: async (parent: any, args: Args, context: any, info: GraphQLResolveInfo) => {
+
+            return s.info;
+        }
+    },
+};
+
+const api_server = new ApolloServer({ typeDefs: api_schema, resolvers: api_resolver });
+
+
+
 async function start() {
 
     // console.time('1');
@@ -91,9 +131,18 @@ async function start() {
     let p = await server.listen(4000);
     console.log(`graphql-woodoo server ready at ${p.url}`);
 
+    let p2 = await api_server.listen(4001);
+    console.log(`graphql-woodoo api server ready at ${p2.url}`);
+
     // let response = await graphql(schema, q, root_resolver);
     // debugger
     // console.log(response);
+
+    // const app = express();
+    // const data = s.info;
+    // debugger
+    // app.use('/', jsonGraphqlExpress(data));
+    // app.listen(4001);
 }
 
 start();
