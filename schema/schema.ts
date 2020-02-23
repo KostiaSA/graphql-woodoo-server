@@ -82,6 +82,7 @@ export class Schema {
                 {
                     name: "бухта-wms",
                     prefix: "wms",
+                    description: "это база учета wms",
                     type: "mssql",
                     connection: {
                         // host: "dark\\sql2012",
@@ -89,6 +90,7 @@ export class Schema {
                         // password: "",
                         // database: "BuhtaWmsWeb2020",
                         host: "localhost",
+                        port: 1433,
                         username: "sa2",
                         password: "sonyk",
                         database: "woodoo",
@@ -97,6 +99,7 @@ export class Schema {
                 {
                     name: "бухта-erp",
                     prefix: "erp",
+                    description: "это резервная копия",
                     type: "mssql",
                     connection: {
                         // host: "dark\\sql2012",
@@ -104,6 +107,7 @@ export class Schema {
                         // password: "",
                         // database: "BuhtaWmsWeb2020",
                         host: "localhost",
+                        port: 1433,
                         username: "sa2",
                         password: "sonyk",
                         database: "woodoo",

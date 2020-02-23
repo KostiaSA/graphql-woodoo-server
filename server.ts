@@ -126,7 +126,7 @@ async function start() {
     let p = await server.listen(4000);
     console.log(`graphql-woodoo server ready at ${p.url}`);
 
-    let p2 = await api_server.listen(4001);
+    let p2 = await api_server.listen(3001);
     console.log(`graphql-woodoo api server ready at ${p2.url}`);
 
     // let response = await graphql(schema, q, root_resolver);
