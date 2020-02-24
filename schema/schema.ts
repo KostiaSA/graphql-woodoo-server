@@ -315,12 +315,17 @@ export class Schema {
             },
             ]
         }
+        this.loadFromToJson();
         this.saveToJson();
         this.createCache();
 
     }
 
-
+    loadFromToJson() {
+        if (fs.existsSync('voodoo-schema.json')) {
+            this.info = JSON.parse(fs.readFileSync('voodoo-schema.json'));
+        }
+    }
 
     saveToJson() {
         fs.writeFileSync('voodoo-schema.json', JSON.stringify(this.info), { encoding: "utf8" });
@@ -628,6 +633,20 @@ export class Schema {
         else
             throw new Error("todo: numberAsSql dbtype == mssql");
 
+    }
+
+    upsertDatabase(db: IDatabase) {
+        let index = this.info.databases.findIndex((_db) => _db.name == db.name);
+        if (index == -1)
+            this.info.databases.push(db);
+        else {
+            this.info.databases[index] = db;
+        }
+
+        setTimeout(() => {
+            this.saveToJson();
+            this.createCache();
+        }, 100);
     }
 }
 

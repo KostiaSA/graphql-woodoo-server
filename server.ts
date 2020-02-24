@@ -97,6 +97,8 @@ var api_schema = gql`
 
 `;
 
+var api_server: any;
+
 var api_resolver = {
     JSON: GraphQLJSON,
     Query: {
@@ -114,14 +116,16 @@ var api_resolver = {
     Mutation: {
         save_database: (parent: any, args: { database: string }) => {
             let db = JSON.parse(args.database);
+            s.upsertDatabase(db);
             console.log("db", db);
+            //api_server.stop();
             return "ok";
         }
     }
 
 };
 
-const api_server = new ApolloServer({ typeDefs: api_schema, resolvers: api_resolver });
+api_server = new ApolloServer({ typeDefs: api_schema, resolvers: api_resolver });
 
 
 
