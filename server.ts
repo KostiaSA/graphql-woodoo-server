@@ -83,13 +83,18 @@ const server = new ApolloServer({ typeDefs: gql(s.createGraphQLSchema()), resolv
 
 
 var api_schema = gql`
-scalar JSON
+  scalar JSON
 
-type Query {
-    schema: JSON
-    tables: JSON
-    databases: JSON
-}
+  type Query {
+      schema: JSON
+      tables: JSON
+      databases: JSON
+  }
+
+  type Mutation {
+      save_database(database:JSON):String 
+  }
+
 `;
 
 var api_resolver = {
@@ -105,6 +110,15 @@ var api_resolver = {
             return s.info.databases;
         }
     },
+
+    Mutation: {
+        save_database: (parent: any, args: { database: string }) => {
+            let db = JSON.parse(args.database);
+            console.log("db", db);
+            return "ok";
+        }
+    }
+
 };
 
 const api_server = new ApolloServer({ typeDefs: api_schema, resolvers: api_resolver });
