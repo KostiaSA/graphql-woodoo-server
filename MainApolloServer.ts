@@ -11,6 +11,7 @@ export class MainApolloServer {
     }
 
     async start() {
+        console.log(this.app.schema.createGraphQLSchema());
         this.apolloServer = new ApolloServer({
             typeDefs: gql(this.app.schema.createGraphQLSchema()),
             resolvers: this.app.schema.createGraphQLResolvers()
@@ -20,7 +21,9 @@ export class MainApolloServer {
 
     }
 
-    stop() {
-
+    async restart() {
+        console.log("restarting-...");
+        this.apolloServer.stop();
+        this.start();
     }
 }

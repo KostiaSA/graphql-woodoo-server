@@ -52,7 +52,7 @@ export class AdminApiApolloServer {
                     let db = JSON.parse(args.database);
                     this.app.schema.upsertDatabase(db);
                     console.log("db", db);
-                    //api_server.stop();
+                    this.app.mainApolloServer.restart();
                     return "ok";
                 }
             }
