@@ -648,6 +648,20 @@ export class Schema {
             this.createCache();
         }, 100);
     }
+
+    deleteDatabase(db_name: string) {
+        let index = this.info.databases.findIndex((_db) => _db.name == db_name);
+        if (index == -1)
+            throw new Error("database '" + db_name + "' not found to remove");
+        else {
+            this.info.databases.splice(index, 1);
+        }
+
+        setTimeout(() => {
+            this.saveToJson();
+            this.createCache();
+        }, 100);
+    }
 }
 
 //export var schema: Schema = new Schema();

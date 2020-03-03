@@ -27,6 +27,7 @@ export class AdminApiApolloServer {
 
   type Mutation {
       save_database(database:JSON):String 
+      delete_database(db_name:String):String 
   }
 
 `;
@@ -52,6 +53,11 @@ export class AdminApiApolloServer {
                     let db = JSON.parse(args.database);
                     this.app.schema.upsertDatabase(db);
                     console.log("db", db);
+                    this.app.mainApolloServer.restart();
+                    return "ok";
+                },
+                delete_database: (parent: any, args: { db_name: string }) => {
+                    this.app.schema.deleteDatabase(args.db_name);
                     this.app.mainApolloServer.restart();
                     return "ok";
                 }
