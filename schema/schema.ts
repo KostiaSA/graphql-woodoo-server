@@ -1,4 +1,4 @@
-import { ISchema, ITable, IDatabase, IColumn, DatabaseType, GraphqlType } from "../../voodoo-shared/ISchema";
+import { ISchema, ITable, IDatabase, IColumn, DatabaseType, GraphqlType, IDatabaseConnection } from "../../voodoo-shared/ISchema";
 import { GraphQLSchema, GraphQLObjectType, GraphQLObjectTypeConfig, Thunk, isType, GraphQLResolveInfo } from "graphql";
 import { Args, SqlResolver } from "../resolver/SqlResolver";
 var fs = require('fs');
@@ -581,7 +581,9 @@ export class Schema {
                 user: db.connection.username,
                 password: db.connection.password,
                 server: db.connection.host,
+                port: db.connection.port > 0 && db.connection.port != 1433 ? db.connection.port : undefined,
                 database: db.connection.database,
+                coonectionTimeout: 1000 * 15,
                 requestTimeout: 1000 * 1800,
                 pool: {
                     max: 100,
@@ -662,6 +664,39 @@ export class Schema {
             this.saveToJson();
             this.createCache();
         }, 100);
+    }
+
+    async checkDatabaseConnection(db_type: DatabaseType, connection: IDatabaseConnection): Promise<string> {
+
+        if (db_type == "SQL Server") {
+            try {
+                let config = {
+                    user: connection.username,
+                    password: connection.password,
+                    server: connection.host,
+                    port: connection.port > 0 && connection.port != 1433 ? connection.port : undefined,
+                    database: connection.database,
+                    requestTimeout: 3000,
+                    connectionTimeout: 3000,
+                    pool: {
+                        max: 10,
+                        min: 1,
+                        idleTimeoutMillis: 3600 * 1000
+                    }
+                }
+                let pool = new mssql.ConnectionPool(config);
+                await pool.connect();
+                await pool.request().query("select 1");
+                pool.close();
+                return "Ok";
+            }
+            catch (err) {
+                return err.toString();
+            }
+        }
+        else
+            throw new Error("todo: checkDatabaseConnection() dbtype: " + db_type);
+
     }
 }
 

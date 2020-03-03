@@ -28,6 +28,7 @@ export class AdminApiApolloServer {
   type Mutation {
       save_database(database:JSON):String 
       delete_database(db_name:String):String 
+      check_database_connection(db_type:String, connection:JSON):String 
   }
 
 `;
@@ -60,6 +61,9 @@ export class AdminApiApolloServer {
                     this.app.schema.deleteDatabase(args.db_name);
                     this.app.mainApolloServer.restart();
                     return "ok";
+                },
+                check_database_connection: async (parent: any, args: { db_type: string, connection: string }) => {
+                    return this.app.schema.checkDatabaseConnection(args.db_type as any, JSON.parse(args.connection));
                 }
             }
 
@@ -81,3 +85,4 @@ export class AdminApiApolloServer {
 
     }
 }
+
