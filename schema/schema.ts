@@ -655,6 +655,7 @@ export class Schema {
             throw new Error("database '" + db_name + "' not found to remove");
         else {
             this.info.databases.splice(index, 1);
+            this.info.tables = this.info.tables.filter((table) => table.dbname != db_name);
         }
 
         setTimeout(() => {
