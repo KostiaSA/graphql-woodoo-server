@@ -83,7 +83,7 @@ export class Schema {
                     name: "бухта-wms",
                     prefix: "wms",
                     description: "это база учета wms",
-                    type: "mssql",
+                    type: "SQL Server",
                     connection: {
                         // host: "dark\\sql2012",
                         // username: "sa",
@@ -100,7 +100,7 @@ export class Schema {
                     name: "бухта-erp",
                     prefix: "erp",
                     description: "это резервная копия",
-                    type: "mssql",
+                    type: "SQL Server",
                     connection: {
                         // host: "dark\\sql2012",
                         // username: "sa",
@@ -390,7 +390,7 @@ export class Schema {
 
     getTable3PartName(table: ITable) {
         let db = this.getDatabase(table.dbname);
-        if (db.type == "mssql") {
+        if (db.type == "SQL Server") {
             return `[${db.connection.database}].[${table.dbo}].[${table.name}]`
         }
         else
@@ -567,7 +567,7 @@ export class Schema {
 
     async sqlExecute(dbName: string, sql: string): Promise<any> {
         let db = this.getDatabase(dbName);
-        if (db.type == "mssql")
+        if (db.type == "SQL Server")
             return this.sqlExecute_mssql(db, sql);
         else
             throw new Error(`sqlExecute(): todo:`);
@@ -606,10 +606,10 @@ export class Schema {
         if (typeof sql_identifier != "string")
             throw new Error("stringAsSql(): parameter 'sql_identifier' is not a string");
 
-        if (dbtype == "mssql")
+        if (dbtype == "SQL Server")
             return "[" + sql_identifier.replace(/]/g, "]]") + "]";
         else
-            throw new Error("todo: stringAsSql dbtype == mssql");
+            throw new Error("todo: stringAsSql dbtype: " + dbtype);
 
     }
 
@@ -617,10 +617,10 @@ export class Schema {
         if (typeof str != "string")
             throw new Error("stringAsSql(): parameter 'str' is not a string");
 
-        if (dbtype == "mssql")
+        if (dbtype == "SQL Server")
             return "'" + str.replace(/'/g, "''") + "'";
         else
-            throw new Error("todo: stringAsSql dbtype == mssql");
+            throw new Error("todo: stringAsSql dbtype: " + dbtype);
 
     }
 
@@ -628,10 +628,10 @@ export class Schema {
         if (typeof value != "number")
             throw new Error("stringAsSql(): parameter 'value' is not a number");
 
-        if (dbtype == "mssql")
+        if (dbtype == "SQL Server")
             return value.toString();
         else
-            throw new Error("todo: numberAsSql dbtype == mssql");
+            throw new Error("todo: numberAsSql dbtype: " + dbtype);
 
     }
 
