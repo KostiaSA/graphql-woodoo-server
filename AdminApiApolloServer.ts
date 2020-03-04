@@ -23,12 +23,12 @@ export class AdminApiApolloServer {
       schema: JSON
       tables: JSON
       databases: JSON
+      check_database_connection(db_type:String, connection:JSON):String 
   }
 
   type Mutation {
       save_database(database:JSON):String 
       delete_database(db_name:String):String 
-      check_database_connection(db_type:String, connection:JSON):String 
   }
 
 `;
@@ -46,6 +46,9 @@ export class AdminApiApolloServer {
                 },
                 databases: async (parent: any, args: Args, context: any, info: GraphQLResolveInfo) => {
                     return this.app.schema.info.databases;
+                },
+                check_database_connection: async (parent: any, args: { db_type: string, connection: string }) => {
+                    return this.app.schema.checkDatabaseConnection(args.db_type as any, JSON.parse(args.connection));
                 }
             },
 
@@ -62,9 +65,6 @@ export class AdminApiApolloServer {
                     this.app.mainApolloServer.restart();
                     return "ok";
                 },
-                check_database_connection: async (parent: any, args: { db_type: string, connection: string }) => {
-                    return this.app.schema.checkDatabaseConnection(args.db_type as any, JSON.parse(args.connection));
-                }
             }
 
         };
