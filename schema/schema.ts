@@ -698,6 +698,20 @@ export class Schema {
             throw new Error("todo: checkDatabaseConnection() dbtype: " + db_type);
 
     }
+
+    async getDatabaseNativeTables(dbName: string): Promise<string[]> {
+        let db = this.databaseByName[dbName];
+
+        if (db.type == "SQL Server") {
+            let execute_result = await this.sqlExecute_mssql(db, "select TABLE_SCHEMA,TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_TYPE='BASE TABLE' order by TABLE_SCHEMA,TABLE_NAME");
+            let result = execute_result.recordset.map((row: any) => { return { schema_name: row.TABLE_SCHEMA, table_name: row.TABLE_NAME }; });
+            return result;
+        }
+        else
+            throw new Error("todo: getDatabaseNativeTables() dbtype: " + db.type);
+
+    }
+
 }
 
 //export var schema: Schema = new Schema();

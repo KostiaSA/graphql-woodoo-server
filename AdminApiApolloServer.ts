@@ -25,6 +25,8 @@ export class AdminApiApolloServer {
       databases: JSON
       check_database_connection(db_type:String, connection:JSON):String 
       database_exists(db_name:String):Boolean
+      database_native_tables(db_name:String):JSON
+      database(db_name:String):JSON
   }
 
   type Mutation {
@@ -53,7 +55,13 @@ export class AdminApiApolloServer {
                 },
                 database_exists: async (parent: any, args: { db_name: string }) => {
                     return !!this.app.schema.databaseByName[args.db_name];
-                }
+                },
+                database_native_tables: async (parent: any, args: { db_name: string }) => {
+                    return this.app.schema.getDatabaseNativeTables(args.db_name);
+                },
+                database: async (parent: any, args: { db_name: string }) => {
+                    return this.app.schema.databaseByName[args.db_name];
+                },
             },
 
             Mutation: {
