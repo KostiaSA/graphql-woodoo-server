@@ -24,6 +24,7 @@ export class AdminApiApolloServer {
       tables: JSON
       databases: JSON
       check_database_connection(db_type:String, connection:JSON):String 
+      database_exists(db_name:String):Boolean
   }
 
   type Mutation {
@@ -49,6 +50,9 @@ export class AdminApiApolloServer {
                 },
                 check_database_connection: async (parent: any, args: { db_type: string, connection: string }) => {
                     return this.app.schema.checkDatabaseConnection(args.db_type as any, JSON.parse(args.connection));
+                },
+                database_exists: async (parent: any, args: { db_name: string }) => {
+                    return !!this.app.schema.databaseByName[args.db_name];
                 }
             },
 
