@@ -84,6 +84,7 @@ export class Schema {
                     prefix: "wms",
                     description: "это база учета wms",
                     type: "SQL Server",
+                    version: 1,
                     connection: {
                         // host: "dark\\sql2012",
                         // username: "sa",
@@ -101,6 +102,7 @@ export class Schema {
                     prefix: "erp",
                     description: "это резервная копия",
                     type: "SQL Server",
+                    version: 1,
                     connection: {
                         // host: "dark\\sql2012",
                         // username: "sa",
@@ -121,6 +123,7 @@ export class Schema {
                 name: "Сотрудник",
                 object_alias: "sotdrudnik",
                 array_alias: "sotdrudniki",
+                version: 1,
                 columns: [
                     {
                         name: "Номер",
@@ -163,6 +166,7 @@ export class Schema {
                 name: "Подразделение",
                 object_alias: "podr",
                 array_alias: "podrs",
+                version: 1,
                 columns: [
                     {
                         name: "Ключ",
@@ -190,6 +194,7 @@ export class Schema {
                 name: "ТМЦ",
                 object_alias: "tmc",
                 array_alias: "tmcs",
+                version: 1,
                 columns: [
                     {
                         name: "Ключ",
@@ -232,6 +237,7 @@ export class Schema {
                 name: "Вид ТМЦ",
                 object_alias: "tmcvid",
                 array_alias: "tmcvids",
+                version: 1,
                 columns: [
                     {
                         name: "Ключ",
@@ -259,6 +265,7 @@ export class Schema {
                 name: "Проводка",
                 object_alias: "prov",
                 array_alias: "provs",
+                version: 1,
                 columns: [
                     {
                         name: "_id",
@@ -639,10 +646,15 @@ export class Schema {
 
     upsertDatabase(db: IDatabase) {
         let index = this.info.databases.findIndex((_db) => _db.name == db.name);
-        if (index == -1)
+        if (index == -1) {
             this.info.databases.push(db);
+            db.version = 1;
+        }
         else {
+            if (this.info.databases[index].version !== db.version)
+                throw new Error("database was changed by another user");
             this.info.databases[index] = db;
+            db.version += 1;
         }
 
         setTimeout(() => {
@@ -710,6 +722,25 @@ export class Schema {
         else
             throw new Error("todo: getDatabaseNativeTables() dbtype: " + db.type);
 
+    }
+
+    upsertTable(table: ITable) {
+        let index = this.info.tables.findIndex((_table) => _table.name == table.name && _table.dbo == table.dbo);
+        if (index == -1) {
+            table.version = 1;
+            this.info.tables.push(table);
+        }
+        else {
+            if (this.info.tables[index].version !== table.version)
+                throw new Error("table was changed by another user");
+            this.info.tables[index] = table;
+            table.version += 1;
+        }
+
+        setTimeout(() => {
+            this.saveToJson();
+            this.createCache();
+        }, 100);
     }
 
 }
