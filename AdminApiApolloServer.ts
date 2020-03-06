@@ -27,6 +27,7 @@ export class AdminApiApolloServer {
       database_exists(db_name:String):Boolean
       database_native_tables(db_name:String):JSON
       database(db_name:String):JSON
+      database_tables(db_name:String):JSON
   }
 
   type Mutation {
@@ -61,6 +62,9 @@ export class AdminApiApolloServer {
                 },
                 database: async (parent: any, args: { db_name: string }) => {
                     return this.app.schema.databaseByName[args.db_name];
+                },
+                database_tables: async (parent: any, args: { db_name: string }) => {
+                    return this.app.schema.info.tables.filter((t) => t.dbname === args.db_name);
                 },
             },
 
