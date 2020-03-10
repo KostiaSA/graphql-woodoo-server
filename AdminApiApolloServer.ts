@@ -21,13 +21,19 @@ export class AdminApiApolloServer {
 
   type Query {
       schema: JSON
+
       tables: JSON
+      table(db_name:String, table_schema:String, table_name:String):JSON
+
+      native_table_columns(db_name:String, table_schema:String, table_name:String):JSON
+
       databases: JSON
+      database(db_name:String):JSON
       check_database_connection(db_type:String, connection:JSON):String 
       database_exists(db_name:String):Boolean
       database_native_tables(db_name:String):JSON
-      database(db_name:String):JSON
       database_tables(db_name:String):JSON
+
   }
 
   type Mutation {
@@ -66,6 +72,12 @@ export class AdminApiApolloServer {
                 },
                 database_tables: async (parent: any, args: { db_name: string }) => {
                     return this.app.schema.info.tables.filter((t) => t.dbname === args.db_name);
+                },
+                table: async (parent: any, args: { db_name: string, table_schema: string, table_name: string }) => {
+                    return this.app.schema.info.tables.filter((t) => t.dbname === args.db_name && t.dbo === args.table_schema && t.name === args.table_name)[0];
+                },
+                native_table_columns: async (parent: any, args: { db_name: string, table_schema: string, table_name: string }) => {
+                    return this.app.schema.getDatabaseNativeTableColumns(args.db_name, args.table_schema, args.table_name);;
                 },
             },
 

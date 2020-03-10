@@ -1,6 +1,7 @@
 import { ISchema, ITable, IDatabase, IColumn, DatabaseType, GraphqlType, IDatabaseConnection } from "../../voodoo-shared/ISchema";
 import { GraphQLSchema, GraphQLObjectType, GraphQLObjectTypeConfig, Thunk, isType, GraphQLResolveInfo } from "graphql";
 import { Args, SqlResolver } from "../resolver/SqlResolver";
+import { stringAsSql } from "../utils/stringAsSql";
 var fs = require('fs');
 var mssql = require('mssql')
 
@@ -468,6 +469,9 @@ export class Schema {
         };
 
         for (let table of this.info.tables) {
+            if (table.disabled)
+                continue;
+
             ret.Query[this.getTableArrayAlias(table)] = (parent: any, args: Args, context: any, info: GraphQLResolveInfo) => {
                 console.log("ret.Query[this.getTableObjectAlias(table)] ");
                 let resolver = new SqlResolver(this, args, info);
@@ -485,7 +489,8 @@ export class Schema {
         let queryStr: string[] = [];
 
         for (let table of this.info.tables) {
-
+            if (table.disabled)
+                continue;
             let fields: string[] = [];
             for (let col of table.columns) {
 
@@ -721,6 +726,26 @@ export class Schema {
         }
         else
             throw new Error("todo: getDatabaseNativeTables() dbtype: " + db.type);
+
+    }
+
+    async getDatabaseNativeTableColumns(dbName: string, table_schema: string, table_name: string): Promise<string[]> {
+        let db = this.databaseByName[dbName];
+
+        if (db.type === "SQL Server") {
+            let sql = `
+select COLUMN_NAME, DATA_TYPE 
+from INFORMATION_SCHEMA.COLUMNS 
+where 
+  TABLE_SCHEMA=${stringAsSql(db.type, table_schema)} AND 
+  TABLE_NAME=${stringAsSql(db.type, table_name)} order by ORDINAL_POSITION`;
+
+            let execute_result = await this.sqlExecute_mssql(db, sql);
+            let result = execute_result.recordset.map((row: any) => { return { name: row.COLUMN_NAME, type: row.DATA_TYPE }; });
+            return result;
+        }
+        else
+            throw new Error("todo: getDatabaseNativeTableColumns() dbtype: " + db.type);
 
     }
 
