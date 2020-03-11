@@ -150,15 +150,15 @@ export class Schema {
                         type: "IntValue",
                         sql_type: "Int",
                     },
-                    {
-                        name: "podr",
-                        type: "ObjectValue",
-                        ref_db: "бухта-wms",
-                        ref_table: "Подразделение",
-                        ref_columns: [{
-                            column: "ЗП Подразделение", ref_column: "Ключ"
-                        }]
-                    }
+                    // {
+                    //     name: "podr",
+                    //     type: "ObjectValue",
+                    //     ref_db: "бухта-wms",
+                    //     ref_table: "Подразделение",
+                    //     ref_columns: [{
+                    //         column: "ЗП Подразделение", ref_column: "Ключ"
+                    //     }]
+                    // }
                 ]
             },
             {
@@ -223,6 +223,7 @@ export class Schema {
                     },
                     {
                         name: "vid",
+                        alias: "vid",
                         type: "ObjectValue",
                         ref_db: "бухта-wms",
                         ref_table: "Вид ТМЦ",
@@ -306,6 +307,7 @@ export class Schema {
                     },
                     {
                         name: "tmc",
+                        alias: "tmc",
                         type: "ObjectValue",
                         ref_db: "бухта-wms",
                         ref_table: "ТМЦ",
@@ -493,7 +495,8 @@ export class Schema {
                 continue;
             let fields: string[] = [];
             for (let col of table.columns) {
-
+                if (col.disabled)
+                    continue;
                 if (col.type == "ObjectValue") {  // fk
                     if (col.ref_table) {
                         let refTable = this.getTable(col.ref_db, col.ref_table);
