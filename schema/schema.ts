@@ -78,253 +78,257 @@ export class Schema {
 
     constructor() {
         console.log("Schema constr");
-        this.info = {
-            databases: [
-                {
-                    name: "бухта-wms",
-                    prefix: "wms",
-                    description: "это база учета wms",
-                    type: "SQL Server",
-                    version: 1,
-                    connection: {
-                        // host: "dark\\sql2012",
-                        // username: "sa",
-                        // password: "",
-                        // database: "BuhtaWmsWeb2020",
-                        host: "localhost",
-                        port: 1433,
-                        username: "sa2",
-                        password: "sonyk",
-                        database: "woodoo",
-                    }
-                },
-                {
-                    name: "бухта-erp",
-                    prefix: "erp",
-                    description: "это резервная копия",
-                    type: "SQL Server",
-                    version: 1,
-                    connection: {
-                        // host: "dark\\sql2012",
-                        // username: "sa",
-                        // password: "",
-                        // database: "BuhtaWmsWeb2020",
-                        host: "localhost",
-                        port: 1433,
-                        username: "sa2",
-                        password: "sonyk",
-                        database: "woodoo",
-                    }
-                },
 
-            ],
-            tables: [{
-                dbname: "бухта-wms",
-                dbo: "dbo",
-                name: "Сотрудник",
-                object_alias: "sotdrudnik",
-                array_alias: "sotdrudniki",
-                version: 1,
-                columns: [
-                    {
-                        name: "Номер",
-                        alias: "num",
-                        type: "StringValue",
-                        sql_type: "VarChar",
-                    },
-                    {
-                        name: "Фамилия",
-                        alias: "fa",
-                        type: "StringValue",
-                        sql_type: "VarChar",
-                    },
-                    {
-                        name: "Имя",
-                        alias: "im",
-                        type: "StringValue",
-                        sql_type: "VarChar",
-                    },
-                    {
-                        name: "ЗП Подразделение",
-                        alias: "podr_id",
-                        type: "IntValue",
-                        sql_type: "Int",
-                    },
-                    // {
-                    //     name: "podr",
-                    //     type: "ObjectValue",
-                    //     ref_db: "бухта-wms",
-                    //     ref_table: "Подразделение",
-                    //     ref_columns: [{
-                    //         column: "ЗП Подразделение", ref_column: "Ключ"
-                    //     }]
-                    // }
-                ]
-            },
-            {
-                dbname: "бухта-wms",
-                dbo: "dbo",
-                name: "Подразделение",
-                object_alias: "podr",
-                array_alias: "podrs",
-                version: 1,
-                columns: [
-                    {
-                        name: "Ключ",
-                        alias: "id",
-                        type: "IntValue",
-                        sql_type: "Int",
-                    },
-                    {
-                        name: "Номер",
-                        alias: "num",
-                        type: "StringValue",
-                        sql_type: "VarChar",
-                    },
-                    {
-                        name: "Название",
-                        alias: "name",
-                        type: "StringValue",
-                        sql_type: "VarChar",
-                    },
-                ]
-            },
-            {
-                dbname: "бухта-wms",
-                dbo: "dbo",
-                name: "ТМЦ",
-                object_alias: "tmc",
-                array_alias: "tmcs",
-                version: 1,
-                columns: [
-                    {
-                        name: "Ключ",
-                        alias: "id",
-                        type: "IntValue",
-                        sql_type: "Int",
-                    },
-                    {
-                        name: "Номер",
-                        alias: "num",
-                        type: "StringValue",
-                        sql_type: "VarChar",
-                    },
-                    {
-                        name: "Название",
-                        alias: "name",
-                        type: "StringValue",
-                        sql_type: "VarChar",
-                    },
-                    {
-                        name: "Вид",
-                        alias: "vid_id",
-                        type: "IntValue",
-                        sql_type: "Int",
-                    },
-                    {
-                        name: "vid",
-                        alias: "vid",
-                        type: "ObjectValue",
-                        ref_db: "бухта-wms",
-                        ref_table: "Вид ТМЦ",
-                        ref_columns: [{
-                            column: "Вид", ref_column: "Ключ"
-                        }]
-                    }
-                ]
-            },
-            {
-                dbname: "бухта-wms",
-                dbo: "dbo",
-                name: "Вид ТМЦ",
-                object_alias: "tmcvid",
-                array_alias: "tmcvids",
-                version: 1,
-                columns: [
-                    {
-                        name: "Ключ",
-                        alias: "id",
-                        type: "IntValue",
-                        sql_type: "VarChar",
-                    },
-                    {
-                        name: "Номер",
-                        alias: "num",
-                        type: "StringValue",
-                        sql_type: "VarChar",
-                    },
-                    {
-                        name: "Название",
-                        alias: "name",
-                        type: "StringValue",
-                        sql_type: "VarChar",
-                    },
-                ]
-            },
-            {
-                dbname: "бухта-wms",
-                dbo: "dbo",
-                name: "Проводка",
-                object_alias: "prov",
-                array_alias: "provs",
-                version: 1,
-                columns: [
-                    {
-                        name: "_id",
-                        alias: "_id",
-                        type: "StringValue",
-                        sql_type: "UniqueIdentifier",
-                    },
-                    {
-                        name: "Ключ",
-                        alias: "id",
-                        type: "IntValue",
-                        sql_type: "VarChar",
-                    },
-                    {
-                        name: "Дата",
-                        alias: "date",
-                        type: "StringValue",
-                        sql_type: "Date",
-                    },
-                    {
-                        name: "Сумма",
-                        alias: "summa",
-                        type: "FloatValue",
-                        sql_type: "Money",
-                    },
-                    {
-                        name: "Дб субконто 2",
-                        alias: "db_subconto2",
-                        type: "IntValue",
-                        sql_type: "Int",
-                    },
-                    {
-                        name: "Дебет",
-                        alias: "debet",
-                        type: "StringValue",
-                        sql_type: "VarChar",
-                    },
-                    {
-                        name: "tmc",
-                        alias: "tmc",
-                        type: "ObjectValue",
-                        ref_db: "бухта-wms",
-                        ref_table: "ТМЦ",
-                        ref_columns: [{
-                            column: "Дб субконто 2", ref_column: "Ключ"
-                        }]
-                    },
-                    {
-                        name: "Кредит",
-                        alias: "kredit",
-                        type: "StringValue",
-                        sql_type: "VarChar",
-                    },
-                ]
-            },
-            ]
-        }
+        // todo сделать инициализацию
+        this.info = {} as any;
+
+        // this.info = {
+        //     databases: [
+        //         {
+        //             name: "бухта-wms",
+        //             prefix: "wms",
+        //             description: "это база учета wms",
+        //             type: "SQL Server",
+        //             version: 1,
+        //             connection: {
+        //                 // host: "dark\\sql2012",
+        //                 // username: "sa",
+        //                 // password: "",
+        //                 // database: "BuhtaWmsWeb2020",
+        //                 host: "localhost",
+        //                 port: 1433,
+        //                 username: "sa2",
+        //                 password: "sonyk",
+        //                 database: "woodoo",
+        //             }
+        //         },
+        //         {
+        //             name: "бухта-erp",
+        //             prefix: "erp",
+        //             description: "это резервная копия",
+        //             type: "SQL Server",
+        //             version: 1,
+        //             connection: {
+        //                 // host: "dark\\sql2012",
+        //                 // username: "sa",
+        //                 // password: "",
+        //                 // database: "BuhtaWmsWeb2020",
+        //                 host: "localhost",
+        //                 port: 1433,
+        //                 username: "sa2",
+        //                 password: "sonyk",
+        //                 database: "woodoo",
+        //             }
+        //         },
+
+        //     ],
+        //     tables: [{
+        //         dbname: "бухта-wms",
+        //         dbo: "dbo",
+        //         name: "Сотрудник",
+        //         object_alias: "sotdrudnik",
+        //         array_alias: "sotdrudniki",
+        //         version: 1,
+        //         columns: [
+        //             {
+        //                 name: "Номер",
+        //                 alias: "num",
+        //                 type: "StringValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //             {
+        //                 name: "Фамилия",
+        //                 alias: "fa",
+        //                 type: "StringValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //             {
+        //                 name: "Имя",
+        //                 alias: "im",
+        //                 type: "StringValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //             {
+        //                 name: "ЗП Подразделение",
+        //                 alias: "podr_id",
+        //                 type: "IntValue",
+        //                 sql_type: "Int",
+        //             },
+        //             // {
+        //             //     name: "podr",
+        //             //     type: "ObjectValue",
+        //             //     ref_db: "бухта-wms",
+        //             //     ref_table: "Подразделение",
+        //             //     ref_columns: [{
+        //             //         column: "ЗП Подразделение", ref_column: "Ключ"
+        //             //     }]
+        //             // }
+        //         ]
+        //     },
+        //     {
+        //         dbname: "бухта-wms",
+        //         dbo: "dbo",
+        //         name: "Подразделение",
+        //         object_alias: "podr",
+        //         array_alias: "podrs",
+        //         version: 1,
+        //         columns: [
+        //             {
+        //                 name: "Ключ",
+        //                 alias: "id",
+        //                 type: "IntValue",
+        //                 sql_type: "Int",
+        //             },
+        //             {
+        //                 name: "Номер",
+        //                 alias: "num",
+        //                 type: "StringValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //             {
+        //                 name: "Название",
+        //                 alias: "name",
+        //                 type: "StringValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //         ]
+        //     },
+        //     {
+        //         dbname: "бухта-wms",
+        //         dbo: "dbo",
+        //         name: "ТМЦ",
+        //         object_alias: "tmc",
+        //         array_alias: "tmcs",
+        //         version: 1,
+        //         columns: [
+        //             {
+        //                 name: "Ключ",
+        //                 alias: "id",
+        //                 type: "IntValue",
+        //                 sql_type: "Int",
+        //             },
+        //             {
+        //                 name: "Номер",
+        //                 alias: "num",
+        //                 type: "StringValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //             {
+        //                 name: "Название",
+        //                 alias: "name",
+        //                 type: "StringValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //             {
+        //                 name: "Вид",
+        //                 alias: "vid_id",
+        //                 type: "IntValue",
+        //                 sql_type: "Int",
+        //             },
+        //             {
+        //                 name: "vid",
+        //                 alias: "vid",
+        //                 type: "ObjectValue",
+        //                 ref_db: "бухта-wms",
+        //                 ref_table: "Вид ТМЦ",
+        //                 ref_columns: [{
+        //                     column: "Вид", ref_column: "Ключ"
+        //                 }]
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         dbname: "бухта-wms",
+        //         dbo: "dbo",
+        //         name: "Вид ТМЦ",
+        //         object_alias: "tmcvid",
+        //         array_alias: "tmcvids",
+        //         version: 1,
+        //         columns: [
+        //             {
+        //                 name: "Ключ",
+        //                 alias: "id",
+        //                 type: "IntValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //             {
+        //                 name: "Номер",
+        //                 alias: "num",
+        //                 type: "StringValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //             {
+        //                 name: "Название",
+        //                 alias: "name",
+        //                 type: "StringValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //         ]
+        //     },
+        //     {
+        //         dbname: "бухта-wms",
+        //         dbo: "dbo",
+        //         name: "Проводка",
+        //         object_alias: "prov",
+        //         array_alias: "provs",
+        //         version: 1,
+        //         columns: [
+        //             {
+        //                 name: "_id",
+        //                 alias: "_id",
+        //                 type: "StringValue",
+        //                 sql_type: "UniqueIdentifier",
+        //             },
+        //             {
+        //                 name: "Ключ",
+        //                 alias: "id",
+        //                 type: "IntValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //             {
+        //                 name: "Дата",
+        //                 alias: "date",
+        //                 type: "StringValue",
+        //                 sql_type: "Date",
+        //             },
+        //             {
+        //                 name: "Сумма",
+        //                 alias: "summa",
+        //                 type: "FloatValue",
+        //                 sql_type: "Money",
+        //             },
+        //             {
+        //                 name: "Дб субконто 2",
+        //                 alias: "db_subconto2",
+        //                 type: "IntValue",
+        //                 sql_type: "Int",
+        //             },
+        //             {
+        //                 name: "Дебет",
+        //                 alias: "debet",
+        //                 type: "StringValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //             {
+        //                 name: "tmc",
+        //                 alias: "tmc",
+        //                 type: "ObjectValue",
+        //                 ref_db: "бухта-wms",
+        //                 ref_table: "ТМЦ",
+        //                 ref_columns: [{
+        //                     column: "Дб субконто 2", ref_column: "Ключ"
+        //                 }]
+        //             },
+        //             {
+        //                 name: "Кредит",
+        //                 alias: "kredit",
+        //                 type: "StringValue",
+        //                 sql_type: "VarChar",
+        //             },
+        //         ]
+        //     },
+        //     ]
+        // }
         this.loadFromToJson();
         this.saveToJson();
         this.createCache();

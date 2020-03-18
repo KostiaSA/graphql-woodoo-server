@@ -24,6 +24,7 @@ export class AdminApiApolloServer {
 
       tables: JSON
       table(db_name:String, table_schema:String, table_name:String):JSON
+      column(db_name:String, table_schema:String, table_name:String, column_name:String):JSON
 
       native_table_columns(db_name:String, table_schema:String, table_name:String):JSON
 
@@ -76,6 +77,10 @@ export class AdminApiApolloServer {
                 table: async (parent: any, args: { db_name: string, table_schema: string, table_name: string }) => {
                     return this.app.schema.info.tables.filter((t) => t.dbname === args.db_name && t.dbo === args.table_schema && t.name === args.table_name)[0];
                 },
+                column: async (parent: any, args: { db_name: string, table_schema: string, table_name: string, column_name: string }) => {
+                    var table = this.app.schema.info.tables.filter((t) => t.dbname === args.db_name && t.dbo === args.table_schema && t.name === args.table_name)[0];
+                    return table.columns.filter((col) => col.name === args.column_name)[0];
+                },
                 native_table_columns: async (parent: any, args: { db_name: string, table_schema: string, table_name: string }) => {
                     return this.app.schema.getDatabaseNativeTableColumns(args.db_name, args.table_schema, args.table_name);;
                 },
@@ -113,7 +118,7 @@ export class AdminApiApolloServer {
             resolvers: this.getApiResolvers()
         });
         let result = await this.apolloServer.listen(3001);
-        console.log(`graphql-woodoo server ready at ${result.url}`);
+        console.log(`graphql-woodoo server admin API ready at ${result.url}`);
 
     }
 

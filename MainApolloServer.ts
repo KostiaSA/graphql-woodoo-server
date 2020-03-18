@@ -17,7 +17,7 @@ export class MainApolloServer {
             resolvers: this.app.schema.createGraphQLResolvers()
         });
         let result = await this.apolloServer.listen(4000);
-        console.log(`graphql-woodoo server ready at ${result.url}`);
+        console.log(`graphql-woodoo API server ready at ${result.url}`);
 
     }
 
