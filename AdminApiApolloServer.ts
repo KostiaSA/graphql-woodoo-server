@@ -82,7 +82,7 @@ export class AdminApiApolloServer {
                     return table.columns.filter((col) => col.name === args.column_name)[0];
                 },
                 native_table_columns: async (parent: any, args: { db_name: string, table_schema: string, table_name: string }) => {
-                    return this.app.schema.getDatabaseNativeTableColumns(args.db_name, args.table_schema, args.table_name);;
+                    return this.app.schema.getDatabaseNativeTableColumns(args.db_name, args.table_schema, args.table_name);
                 },
             },
 
