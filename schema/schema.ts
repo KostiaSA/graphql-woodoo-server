@@ -530,6 +530,11 @@ export class Schema {
 
                     where_params.push("is_hidden:Boolean");
 
+                    let field_description = col.description || "";
+                    if (col.sql_type)
+                        field_description += "  (" + col.sql_type + ")";
+                    fields.push(JSON.stringify(field_description));
+
                     if (where_params.length == 0)
                         fields.push(`${this.getTableColAlias(col)}:${typeStr}`);
                     else
@@ -537,6 +542,7 @@ export class Schema {
                 }
             }
 
+            defStr.push(JSON.stringify(table.description || ""));
             defStr.push(`type ${this.getTableObjectAlias(table)} {${fields.join(" ")}}`);
             queryStr.push(`${this.getTableObjectAlias(table)}: ${this.getTableObjectAlias(table)}`);
 

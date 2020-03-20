@@ -33,6 +33,7 @@ export class AdminApiApolloServer {
       check_database_connection(db_type:String, connection:JSON):String 
       database_exists(db_name:String):Boolean
       database_native_tables(db_name:String):JSON
+
       database_tables(db_name:String):JSON
 
   }
