@@ -3,6 +3,7 @@ import { ApolloServer, gql } from 'apollo-server';
 import { GraphQLResolveInfo } from 'graphql';
 import { Args } from './resolver/SqlResolver';
 import { App } from './App';
+import { ITable, IColumn } from '../voodoo-shared/ISchema';
 const { GraphQLJSON, GraphQLJSONObject } = require('graphql-type-json');
 
 export class AdminApiApolloServer {
@@ -24,6 +25,7 @@ export class AdminApiApolloServer {
 
       tables: JSON
       table(db_name:String, table_schema:String, table_name:String):JSON
+      table_ref_tables(db_name:String, table_schema:String, table_name:String): JSON
       column(db_name:String, table_schema:String, table_name:String, column_name:String):JSON
 
       native_table_columns(db_name:String, table_schema:String, table_name:String):JSON
@@ -77,6 +79,18 @@ export class AdminApiApolloServer {
                 },
                 table: async (parent: any, args: { db_name: string, table_schema: string, table_name: string }) => {
                     return this.app.schema.info.tables.filter((t) => t.dbname === args.db_name && t.dbo === args.table_schema && t.name === args.table_name)[0];
+                },
+                table_ref_tables: async (parent: any, args: { db_name: string, table_schema: string, table_name: string }) => {
+                    var table = this.app.schema.info.tables.filter((t) => t.dbname === args.db_name && t.dbo === args.table_schema && t.name === args.table_name)[0];
+
+                    let getRefColKey = (col: IColumn) => col.ref_db + ":" + col.ref_schema + ":" + col.ref_table;
+
+                    let keys: { [schema_and_table: string]: boolean } = {};
+                    for (let col of table.columns.filter((col) => typeof col.ref_db === "string")) {
+                        keys[getRefColKey(col)] = true;
+                    }
+                    return this.app.schema.info.tables.filter((table: ITable) => keys[table.dbname + ":" + table.dbo + ":" + table.name]);
+
                 },
                 column: async (parent: any, args: { db_name: string, table_schema: string, table_name: string, column_name: string }) => {
                     var table = this.app.schema.info.tables.filter((t) => t.dbname === args.db_name && t.dbo === args.table_schema && t.name === args.table_name)[0];
