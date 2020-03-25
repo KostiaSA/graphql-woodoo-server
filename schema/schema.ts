@@ -342,7 +342,7 @@ export class Schema {
     }
 
     saveToJson() {
-        fs.writeFileSync('voodoo-schema.json', JSON.stringify(this.info), { encoding: "utf8" });
+        fs.writeFileSync('voodoo-schema.json', JSON.stringify(this.info, null, 4), { encoding: "utf8" });
     }
 
     createCache() {

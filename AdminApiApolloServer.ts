@@ -21,6 +21,7 @@ export class AdminApiApolloServer {
   scalar JSON
 
   type Query {
+      ping:JSON
       schema: JSON
 
       tables: JSON
@@ -53,6 +54,9 @@ export class AdminApiApolloServer {
         return {
             JSON: GraphQLJSON,
             Query: {
+                ping: async () => {
+                    return { ping: "Ok" };
+                },
                 schema: async (parent: any, args: Args, context: any, info: GraphQLResolveInfo) => {
                     return this.app.schema.info;
                 },
