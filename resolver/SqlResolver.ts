@@ -66,7 +66,7 @@ export class SqlResolver {
 
 
             if (col.ref_table) {
-                let join_table = this.schema.getTable(col.ref_db, col.ref_table);
+                let join_table = this.schema.getTable(col.ref_db, col.ref_schema, col.ref_table);
                 let join_table_alias = this.schema.getTableObjectAlias(join_table);
                 let join_database = this.schema.getTableDatabase(join_table);
                 let join_fromAlias = fromAlias + "_" + join_table_alias + "_" + this.sql.from.sql.length;

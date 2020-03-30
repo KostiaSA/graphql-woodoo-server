@@ -2,10 +2,10 @@
     "databases": [
         {
             "name": "бухта-wms",
-            "prefix": "wms",
+            "prefix": "",
             "description": "это база учета wms ++++",
             "type": "SQL Server",
-            "version": 12,
+            "version": 13,
             "connection": {
                 "host": "dark\\sql2012",
                 "port": 1433,
@@ -41,355 +41,33 @@
                 "password": "",
                 "database": ""
             }
+        },
+        {
+            "name": "RegionSnab",
+            "prefix": "regsnab",
+            "type": "SQL Server",
+            "description": "регион",
+            "version": 1,
+            "connection": {
+                "host": "dark\\sql2012",
+                "port": 1433,
+                "username": "sa",
+                "password": "",
+                "database": "RegionSnab"
+            }
         }
     ],
     "tables": [
         {
             "dbname": "бухта-wms",
-            "dbo": "dbo",
-            "name": "_____blk__скл_Причины возврата_0",
-            "object_alias": "prich",
-            "array_alias": "prichs",
-            "version": 5,
             "columns": [
                 {
                     "name": "Ключ",
-                    "alias": "id",
-                    "type": "IntValue",
-                    "sql_type": "Int"
-                },
-                {
-                    "name": "Номер",
-                    "alias": "num",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "Название",
-                    "alias": "name",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                }
-            ],
-            "disabled": false
-        },
-        {
-            "dbname": "бухта-wms",
-            "dbo": "dbo",
-            "name": "Сотрудник",
-            "object_alias": "sotdrudnik",
-            "array_alias": "sotdrudniki",
-            "version": 1,
-            "columns": [
-                {
-                    "name": "Номер",
-                    "alias": "num",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "Фамилия",
-                    "alias": "fa",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "Имя",
-                    "alias": "im",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "ЗП Подразделение",
-                    "alias": "podr_id",
-                    "type": "IntValue",
-                    "sql_type": "Int"
-                },
-                {
-                    "name": "podr",
-                    "type": "ObjectValue",
-                    "ref_db": "бухта-wms",
-                    "ref_table": "Подразделение",
-                    "ref_columns": [
-                        {
-                            "column": "ЗП Подразделение",
-                            "ref_column": "Ключ"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "dbname": "бухта-wms",
-            "dbo": "dbo",
-            "name": "Подразделение",
-            "object_alias": "podr",
-            "array_alias": "podrs",
-            "version": 8,
-            "columns": [
-                {
-                    "name": "Ключ",
-                    "alias": "id",
-                    "type": "IntValue",
-                    "sql_type": "Int"
-                },
-                {
-                    "name": "Номер",
-                    "alias": "num",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "Название",
-                    "alias": "name",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "Вид",
-                    "alias": "Vid",
+                    "alias": "Klyuch",
                     "type": "Int",
-                    "sql_type": "int"
+                    "sql_type": "int",
+                    "description": "Ключ"
                 },
-                {
-                    "name": "_Время обеда в минутах",
-                    "alias": "_Vremya_obeda_v_minutakh",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "ОКВЭД",
-                    "alias": "OKVED",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "ЗП ФОТ счет",
-                    "alias": "ZP_FOT_schet",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "hhh"
-                }
-            ],
-            "disabled": false
-        },
-        {
-            "dbname": "бухта-wms",
-            "dbo": "dbo",
-            "name": "ТМЦ",
-            "object_alias": "tmc",
-            "array_alias": "tmcs",
-            "version": 40,
-            "columns": [
-                {
-                    "name": "Ключ",
-                    "alias": "id",
-                    "type": "IntValue",
-                    "sql_type": "Int"
-                },
-                {
-                    "name": "Номер",
-                    "alias": "num",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "Название",
-                    "alias": "name",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "vid",
-                    "alias": "vid",
-                    "type": "ObjectValue",
-                    "ref_db": "бухта-wms",
-                    "ref_schema": "dbo",
-                    "ref_table": "Вид ТМЦ",
-                    "ref_columns": [
-                        {
-                            "column": "Вид2",
-                            "ref_column": "Ключ2"
-                        }
-                    ],
-                    "disabled": false
-                },
-                {
-                    "name": "vid2",
-                    "alias": "vid2",
-                    "type": "ObjectValue",
-                    "ref_db": "бухта-wms",
-                    "ref_schema": "dbo",
-                    "ref_table": "Вид ТМЦ",
-                    "ref_columns": [
-                        {
-                            "column": "Вид",
-                            "ref_column": "Ключ"
-                        },
-                        {
-                            "column": "Вид2",
-                            "ref_column": "Ключ2"
-                        }
-                    ],
-                    "disabled": false
-                },
-                {
-                    "name": "AutoNum",
-                    "alias": "AutoNum",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Тип",
-                    "alias": "Tip",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "disabled": false
-                },
-                {
-                    "name": "Сорт",
-                    "alias": "Sort",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "disabled": false
-                },
-                {
-                    "name": "Подвид",
-                    "alias": "Podvid",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Длина брутто",
-                    "alias": "Dlina_brutto",
-                    "type": "Float",
-                    "sql_type": "money"
-                },
-                {
-                    "name": "Ширина брутто",
-                    "alias": "Shirina_brutto",
-                    "type": "Float",
-                    "sql_type": "money"
-                },
-                {
-                    "name": "Высота брутто",
-                    "alias": "Visota_brutto",
-                    "type": "Float",
-                    "sql_type": "money"
-                },
-                {
-                    "name": "Площадь брутто",
-                    "alias": "Ploshchad_brutto",
-                    "type": "Float",
-                    "sql_type": "money"
-                },
-                {
-                    "name": "ReplGuid",
-                    "alias": "ReplGuid",
-                    "type": "String",
-                    "sql_type": "uniqueidentifier"
-                }
-            ],
-            "disabled": false,
-            "description": "товар"
-        },
-        {
-            "dbname": "бухта-wms",
-            "dbo": "dbo",
-            "name": "Вид ТМЦ",
-            "object_alias": "tmcvid",
-            "array_alias": "tmcvids",
-            "version": 1,
-            "columns": [
-                {
-                    "name": "Ключ",
-                    "alias": "id",
-                    "type": "IntValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "Номер",
-                    "alias": "num",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "Название",
-                    "alias": "name",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                }
-            ]
-        },
-        {
-            "dbname": "бухта-wms",
-            "dbo": "dbo",
-            "name": "Проводка",
-            "object_alias": "prov",
-            "array_alias": "provs",
-            "version": 3,
-            "columns": [
-                {
-                    "name": "_id",
-                    "alias": "_id",
-                    "type": "StringValue",
-                    "sql_type": "UniqueIdentifier"
-                },
-                {
-                    "name": "Ключ",
-                    "alias": "id",
-                    "type": "IntValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "Дата",
-                    "alias": "date",
-                    "type": "StringValue",
-                    "sql_type": "Date",
-                    "description": "дата"
-                },
-                {
-                    "name": "Сумма",
-                    "alias": "summa",
-                    "type": "FloatValue",
-                    "sql_type": "Money"
-                },
-                {
-                    "name": "Дб субконто 2",
-                    "alias": "db_subconto2",
-                    "type": "IntValue",
-                    "sql_type": "Int"
-                },
-                {
-                    "name": "Дебет",
-                    "alias": "debet",
-                    "type": "StringValue",
-                    "sql_type": "VarChar"
-                },
-                {
-                    "name": "tmc",
-                    "type": "ObjectValue",
-                    "ref_db": "бухта-wms",
-                    "ref_table": "ТМЦ",
-                    "ref_columns": [
-                        {
-                            "column": "Дб субконто 2",
-                            "ref_column": "Ключ"
-                        }
-                    ]
-                },
-                {
-                    "name": "Кредит",
-                    "alias": "kredit",
-                    "type": "StringValue",
-                    "sql_type": "VarChar",
-                    "description": "кредит"
-                }
-            ]
-        },
-        {
-            "dbname": "бухта-wms",
-            "columns": [
                 {
                     "name": "Номер",
                     "alias": "Nomer",
@@ -401,907 +79,185 @@
                     "name": "Название",
                     "alias": "Nazvanie",
                     "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Группа",
-                    "alias": "Gruppa",
-                    "type": "String",
-                    "sql_type": "varchar"
+                    "sql_type": "varchar",
+                    "description": "Название"
                 },
                 {
                     "name": "Тип",
                     "alias": "Tip",
                     "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Актив",
-                    "alias": "Aktiv",
-                    "type": "Boolean",
-                    "sql_type": "bit"
-                },
-                {
-                    "name": "Пассив",
-                    "alias": "Passiv",
-                    "type": "Boolean",
-                    "sql_type": "bit"
-                },
-                {
-                    "name": "Свернутый",
-                    "alias": "Svernutii",
-                    "type": "Boolean",
-                    "sql_type": "bit"
-                },
-                {
-                    "name": "Типы субконто 1",
-                    "alias": "Tipi_subkonto_1",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Название субконто 1",
-                    "alias": "Nazvanie_subkonto_1",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Типы субконто 2",
-                    "alias": "Tipi_subkonto_2",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Название субконто 2",
-                    "alias": "Nazvanie_subkonto_2",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Типы субконто 3",
-                    "alias": "Tipi_subkonto_3",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Название субконто 3",
-                    "alias": "Nazvanie_subkonto_3",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Типы субконто 4",
-                    "alias": "Tipi_subkonto_4",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Название субконто 4",
-                    "alias": "Nazvanie_subkonto_4",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Типы субконто 5",
-                    "alias": "Tipi_subkonto_5",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Название субконто 5",
-                    "alias": "Nazvanie_subkonto_5",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Количество",
-                    "alias": "Kolichestvo",
-                    "type": "Boolean",
-                    "sql_type": "bit"
-                },
-                {
-                    "name": "Количество 2",
-                    "alias": "Kolichestvo_2",
-                    "type": "Boolean",
-                    "sql_type": "bit"
-                },
-                {
-                    "name": "Сумма руб.",
-                    "alias": "Summa_rub_",
-                    "type": "Boolean",
-                    "sql_type": "bit"
-                },
-                {
-                    "name": "Сумма у.е.",
-                    "alias": "Summa_u_e_",
-                    "type": "Boolean",
-                    "sql_type": "bit"
-                },
-                {
-                    "name": "FIFO1",
-                    "alias": "FIFO1",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "FIFO2",
-                    "alias": "FIFO2",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "FIFO3",
-                    "alias": "FIFO3",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "FIFO4",
-                    "alias": "FIFO4",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "FIFO5",
-                    "alias": "FIFO5",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Конфигурация",
-                    "alias": "Konfiguratsiya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Версия",
-                    "alias": "Versiya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кто изменил",
-                    "alias": "Kto_izmenil",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Когда изменил",
-                    "alias": "Kogda_izmenil",
-                    "type": "String",
-                    "sql_type": "datetime"
-                },
-                {
-                    "name": "Что изменил",
-                    "alias": "Chto_izmenil",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Исх. конфигурация",
-                    "alias": "Iskh__konfiguratsiya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Исх. версия",
-                    "alias": "Iskh__versiya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Исх. ключ",
-                    "alias": "Iskh__klyuch",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Не закрывать",
-                    "alias": "Ne_zakrivat",
-                    "type": "Boolean",
-                    "sql_type": "bit"
-                },
-                {
-                    "name": "Контур учета",
-                    "alias": "Kontur_ucheta",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Исключить из форм бух.от.",
-                    "alias": "Isklyuchit_iz_form_bukh_ot_",
-                    "type": "Boolean",
-                    "sql_type": "bit"
-                },
-                {
-                    "name": "Кто создал",
-                    "alias": "Kto_sozdal",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Когда создал",
-                    "alias": "Kogda_sozdal",
-                    "type": "String",
-                    "sql_type": "datetime"
-                }
-            ],
-            "dbo": "dbo",
-            "name": "Счет",
-            "object_alias": "dbo_Schet",
-            "array_alias": "dbo_Schets",
-            "disabled": false,
-            "version": 2
-        },
-        {
-            "dbname": "бухта-wms",
-            "columns": [
-                {
-                    "name": "Ключ",
-                    "alias": "id",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Номер",
-                    "alias": "Nomer",
-                    "type": "String",
                     "sql_type": "varchar",
-                    "description": "Номер бля"
-                },
-                {
-                    "name": "Название",
-                    "alias": "Nazvanie",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "названия"
-                },
-                {
-                    "name": "Тип",
-                    "alias": "type",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "тип"
+                    "description": "Тип"
                 },
                 {
                     "name": "Запрос для просмотра",
-                    "alias": "Zapros_dlya_prosmotraw",
+                    "alias": "Zapros_dlya_prosmotra",
                     "type": "String",
-                    "sql_type": "varchar"
+                    "sql_type": "varchar",
+                    "description": "Запрос для просмотра"
                 },
                 {
                     "name": "Запрос для выбора",
                     "alias": "Zapros_dlya_vibora",
                     "type": "String",
-                    "sql_type": "varchar"
+                    "sql_type": "varchar",
+                    "description": "Запрос для выбора"
                 },
                 {
                     "name": "Из вида",
                     "alias": "Iz_vida",
                     "type": "Int",
-                    "sql_type": "int"
+                    "sql_type": "int",
+                    "description": "Из вида"
                 },
                 {
                     "name": "Автонумерация",
                     "alias": "Avtonumeratsiya",
                     "type": "String",
-                    "sql_type": "varchar"
-                }
-            ],
-            "dbo": "dbo",
-            "name": "Вид подразделения",
-            "object_alias": "dbo_podr_vid",
-            "array_alias": "dbo_podr_vids",
-            "disabled": false,
-            "version": 13,
-            "description": "вид подразделения"
-        },
-        {
-            "dbname": "бухта-wms",
-            "columns": [
+                    "sql_type": "varchar",
+                    "description": "Автонумерация"
+                },
                 {
-                    "name": "Ключ",
-                    "alias": "Klyuch",
+                    "name": "Распродажа",
+                    "alias": "Rasprodazha",
                     "type": "Int",
-                    "sql_type": "int"
+                    "sql_type": "int",
+                    "description": "Распродажа"
                 },
                 {
-                    "name": "Вид документа",
-                    "alias": "Vid_dokumenta",
+                    "name": "Группа ТМЦ",
+                    "alias": "Gruppa_TMTs",
                     "type": "Int",
-                    "sql_type": "smallint"
+                    "sql_type": "int",
+                    "description": "Группа ТМЦ"
                 },
                 {
-                    "name": "Источник вид докспец",
-                    "alias": "Istochnik_vid_dokspets",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Источник шифр з/п",
-                    "alias": "Istochnik_shifr_z_p",
-                    "type": "Int",
-                    "sql_type": "smallint"
-                },
-                {
-                    "name": "Источник вид проводки",
-                    "alias": "Istochnik_vid_provodki",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Вид проводки",
-                    "alias": "Vid_provodki",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Приоритет",
-                    "alias": "Prioritet",
-                    "type": "Int",
-                    "sql_type": "smallint"
-                },
-                {
-                    "name": "Дата начала",
-                    "alias": "Data_nachala",
-                    "type": "String",
-                    "sql_type": "datetime"
-                },
-                {
-                    "name": "Дата конца",
-                    "alias": "Data_kontsa",
-                    "type": "String",
-                    "sql_type": "datetime"
-                },
-                {
-                    "name": "Дебет тип",
-                    "alias": "Debet_tip",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дебет",
-                    "alias": "Debet",
+                    "name": "Запрос для партий ТМЦ",
+                    "alias": "Zapros_dlya_partii_TMTs",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "Дебет"
+                    "description": "Запрос для партий ТМЦ"
                 },
                 {
-                    "name": "Дб субконто 1",
-                    "alias": "Db_subkonto_1",
+                    "name": "Запрос для комплектующих",
+                    "alias": "Zapros_dlya_komplektuyushchikh",
                     "type": "String",
-                    "sql_type": "varchar"
+                    "sql_type": "varchar",
+                    "description": "Запрос для комплектующих"
                 },
                 {
-                    "name": "Дб субконто 1 тип значения",
-                    "alias": "Db_subkonto_1_tip_znacheniya",
+                    "name": "Запрос для штрих-кодов",
+                    "alias": "Zapros_dlya_shtrikh_kodov",
                     "type": "String",
-                    "sql_type": "varchar"
+                    "sql_type": "varchar",
+                    "description": "Запрос для штрих-кодов"
                 },
                 {
-                    "name": "Дб субконто 1 значение",
-                    "alias": "Db_subkonto_1_znachenie",
+                    "name": "Запрос для ассортиментов",
+                    "alias": "Zapros_dlya_assortimentov",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Запрос для ассортиментов"
+                },
+                {
+                    "name": "Запрос содержание драгметаллов",
+                    "alias": "Zapros_soderzhanie_dragmetallov",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Запрос содержание драгметаллов"
+                },
+                {
+                    "name": "запрос для вида комплектующих",
+                    "alias": "zapros_dlya_vida_komplektuyushchikh",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "запрос для вида комплектующих"
+                },
+                {
+                    "name": "_База1С",
+                    "alias": "_Baza1S",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_База1С"
+                },
+                {
+                    "name": "_Ключ1С",
+                    "alias": "_Klyuch1S",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Ключ1С"
+                },
+                {
+                    "name": "_1С_GUID",
+                    "alias": "_1S_GUID",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_1С_GUID"
+                },
+                {
+                    "name": "_Номер родителя",
+                    "alias": "_Nomer_roditelya",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Номер родителя"
+                },
+                {
+                    "name": "_3plClient",
+                    "alias": "_3plClient",
                     "type": "Int",
-                    "sql_type": "int"
+                    "sql_type": "int",
+                    "description": "_3plClient"
                 },
                 {
-                    "name": "Дб субконто 2",
-                    "alias": "Db_subkonto_2",
+                    "name": "_ТипОтбора",
+                    "alias": "_TipOtbora",
                     "type": "String",
-                    "sql_type": "varchar"
+                    "sql_type": "varchar",
+                    "description": "_ТипОтбора"
                 },
                 {
-                    "name": "Дб субконто 2 тип значения",
-                    "alias": "Db_subkonto_2_tip_znacheniya",
+                    "name": "_Карточка новой партии",
+                    "alias": "_Kartochka_novoi_partii",
                     "type": "String",
-                    "sql_type": "varchar"
+                    "sql_type": "varchar",
+                    "description": "_Карточка новой партии"
                 },
                 {
-                    "name": "Дб субконто 2 значение",
-                    "alias": "Db_subkonto_2_znachenie",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Дб субконто 3",
-                    "alias": "Db_subkonto_3",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб субконто 3 тип значения",
-                    "alias": "Db_subkonto_3_tip_znacheniya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб субконто 3 значение",
-                    "alias": "Db_subkonto_3_znachenie",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Дб субконто 4",
-                    "alias": "Db_subkonto_4",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб субконто 4 тип значения",
-                    "alias": "Db_subkonto_4_tip_znacheniya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб субконто 4 значение",
-                    "alias": "Db_subkonto_4_znachenie",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Дб субконто 5",
-                    "alias": "Db_subkonto_5",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб субконто 5 тип значения",
-                    "alias": "Db_subkonto_5_tip_znacheniya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб субконто 5 значение",
-                    "alias": "Db_subkonto_5_znachenie",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Дб количество",
-                    "alias": "Db_kolichestvo",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб количество значение",
-                    "alias": "Db_kolichestvo_znachenie",
-                    "type": "Float",
-                    "sql_type": "money"
-                },
-                {
-                    "name": "Дб количество 2",
-                    "alias": "Db_kolichestvo_2",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб количество 2 значение",
-                    "alias": "Db_kolichestvo_2_znachenie",
-                    "type": "Float",
-                    "sql_type": "money"
-                },
-                {
-                    "name": "Кредит тип",
-                    "alias": "Kredit_tip",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кредит",
-                    "alias": "Kredit",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр субконто 1",
-                    "alias": "Kr_subkonto_1",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр субконто 1 тип значения",
-                    "alias": "Kr_subkonto_1_tip_znacheniya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр субконто 1 значение",
-                    "alias": "Kr_subkonto_1_znachenie",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Кр субконто 2",
-                    "alias": "Kr_subkonto_2",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр субконто 2 тип значения",
-                    "alias": "Kr_subkonto_2_tip_znacheniya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр субконто 2 значение",
-                    "alias": "Kr_subkonto_2_znachenie",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Кр субконто 3",
-                    "alias": "Kr_subkonto_3",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр субконто 3 тип значения",
-                    "alias": "Kr_subkonto_3_tip_znacheniya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр субконто 3 значение",
-                    "alias": "Kr_subkonto_3_znachenie",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Кр субконто 4",
-                    "alias": "Kr_subkonto_4",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр субконто 4 тип значения",
-                    "alias": "Kr_subkonto_4_tip_znacheniya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр субконто 4 значение",
-                    "alias": "Kr_subkonto_4_znachenie",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Кр субконто 5",
-                    "alias": "Kr_subkonto_5",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр субконто 5 тип значения",
-                    "alias": "Kr_subkonto_5_tip_znacheniya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр субконто 5 значение",
-                    "alias": "Kr_subkonto_5_znachenie",
-                    "type": "Int",
-                    "sql_type": "int"
-                },
-                {
-                    "name": "Кр количество",
-                    "alias": "Kr_kolichestvo",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр количество значение",
-                    "alias": "Kr_kolichestvo_znachenie",
-                    "type": "Float",
-                    "sql_type": "money"
-                },
-                {
-                    "name": "Кр количество 2",
-                    "alias": "Kr_kolichestvo_2",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр количество 2 значение",
-                    "alias": "Kr_kolichestvo_2_znachenie",
-                    "type": "Float",
-                    "sql_type": "money"
-                },
-                {
-                    "name": "Сумма",
-                    "alias": "Summa",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Сумма значение",
-                    "alias": "Summa_znachenie",
-                    "type": "Float",
-                    "sql_type": "money"
-                },
-                {
-                    "name": "Валюта",
-                    "alias": "Valyuta",
-                    "type": "Int",
-                    "sql_type": "smallint"
-                },
-                {
-                    "name": "Сумма руб.",
-                    "alias": "Summa_rub_",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Сумма USD",
-                    "alias": "Summa_USD",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Входит в сумму",
-                    "alias": "Vkhodit_v_summu",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Перевод суммы в другую валюту",
-                    "alias": "Perevod_summi_v_druguyu_valyutu",
-                    "type": "Boolean",
-                    "sql_type": "bit"
-                },
-                {
-                    "name": "Сумма курс",
-                    "alias": "Summa_kurs",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Сумма дата",
-                    "alias": "Summa_data",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Сумма руб. курс",
-                    "alias": "Summa_rub__kurs",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Сумма руб. дата",
-                    "alias": "Summa_rub__data",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Сумма USD курс",
-                    "alias": "Summa_USD_kurs",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Сумма USD дата",
-                    "alias": "Summa_USD_data",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Фильтр",
-                    "alias": "Filtr",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Фильтр включить",
-                    "alias": "Filtr_vklyuchit",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Операция",
-                    "alias": "Operatsiya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Примечание",
-                    "alias": "Primechanie",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб FIFO 1 сортировка",
-                    "alias": "Db_FIFO_1_sortirovka",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб FIFO 2 сортировка",
-                    "alias": "Db_FIFO_2_sortirovka",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб FIFO 3 сортировка",
-                    "alias": "Db_FIFO_3_sortirovka",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб FIFO 4 сортировка",
-                    "alias": "Db_FIFO_4_sortirovka",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Дб FIFO 5 сортировка",
-                    "alias": "Db_FIFO_5_sortirovka",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр FIFO 1 сортировка",
-                    "alias": "Kr_FIFO_1_sortirovka",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр FIFO 2 сортировка",
-                    "alias": "Kr_FIFO_2_sortirovka",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр FIFO 3 сортировка",
-                    "alias": "Kr_FIFO_3_sortirovka",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кр FIFO 4 сортировка",
-                    "alias": "Kr_FIFO_4_sortirovka",
+                    "name": "_Карточка нового брака",
+                    "alias": "_Kartochka_novogo_braka",
                     "type": "String",
-                    "sql_type": "varchar"
+                    "sql_type": "varchar",
+                    "description": "_Карточка нового брака"
                 },
                 {
-                    "name": "Кр FIFO 5 сортировка",
-                    "alias": "Kr_FIFO_5_sortirovka",
+                    "name": "_Номер из КИС",
+                    "alias": "_Nomer_iz_KIS",
                     "type": "String",
-                    "sql_type": "varchar"
+                    "sql_type": "varchar",
+                    "description": "_Номер из КИС"
                 },
                 {
-                    "name": "Копировать примечание",
-                    "alias": "Kopirovat_primechanie",
-                    "type": "Boolean",
-                    "sql_type": "bit"
-                },
-                {
-                    "name": "SQLDeclare",
-                    "alias": "SQLDeclare",
-                    "type": "String",
-                    "sql_type": "text"
-                },
-                {
-                    "name": "SQLBefore",
-                    "alias": "SQLBefore",
-                    "type": "String",
-                    "sql_type": "text"
-                },
-                {
-                    "name": "SQLSelect",
-                    "alias": "SQLSelect",
-                    "type": "String",
-                    "sql_type": "text"
-                },
-                {
-                    "name": "SQLJoin",
-                    "alias": "SQLJoin",
-                    "type": "String",
-                    "sql_type": "text"
-                },
-                {
-                    "name": "SQLWhere",
-                    "alias": "SQLWhere",
-                    "type": "String",
-                    "sql_type": "text"
-                },
-                {
-                    "name": "SQLAfter",
-                    "alias": "SQLAfter",
-                    "type": "String",
-                    "sql_type": "text"
-                },
-                {
-                    "name": "Комплекты",
-                    "alias": "Komplekti",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Группа",
-                    "alias": "Gruppa",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Конфигурация",
-                    "alias": "Konfiguratsiya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Версия",
-                    "alias": "Versiya",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Кто изменил",
-                    "alias": "Kto_izmenil",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Когда изменил",
-                    "alias": "Kogda_izmenil",
-                    "type": "String",
-                    "sql_type": "datetime"
-                },
-                {
-                    "name": "Что изменил",
-                    "alias": "Chto_izmenil",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Исх. конфигурация",
-                    "alias": "Iskh__konfiguratsiya",
+                    "name": "_ВидНомер",
+                    "alias": "_VidNomer",
                     "type": "String",
-                    "sql_type": "varchar"
+                    "sql_type": "varchar",
+                    "description": "_ВидНомер"
                 },
                 {
-                    "name": "Исх. версия",
-                    "alias": "Iskh__versiya",
+                    "name": "_ВидНазвание",
+                    "alias": "_VidNazvanie",
                     "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Исх. ключ",
-                    "alias": "Iskh__klyuch",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Привязка виды",
-                    "alias": "Privyazka_vidi",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Привязка номер субконто",
-                    "alias": "Privyazka_nomer_subkonto",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Привязка тип субконто",
-                    "alias": "Privyazka_tip_subkonto",
-                    "type": "String",
-                    "sql_type": "varchar"
-                },
-                {
-                    "name": "Заполнять докспец",
-                    "alias": "Zapolnyat_dokspets",
-                    "type": "Boolean",
-                    "sql_type": "bit"
+                    "sql_type": "varchar",
+                    "description": "_ВидНазвание"
                 }
             ],
             "dbo": "dbo",
-            "name": "Генерация",
-            "description": "dbo.Генерация",
-            "object_alias": "dbo_Generatsiya",
-            "array_alias": "dbo_Generatsiyas",
+            "name": "Вид ТМЦ",
+            "description": "dbo.Вид ТМЦ",
+            "object_alias": "TMC_vid",
+            "array_alias": "TMC_vids",
             "disabled": false,
-            "version": 2
+            "version": 3
         },
         {
             "dbname": "бухта-wms",
@@ -1318,7 +274,182 @@
                     "alias": "Nomer",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "Номер документа"
+                    "description": "Номер"
+                },
+                {
+                    "name": "AutoNum",
+                    "alias": "AutoNum",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "AutoNum"
+                },
+                {
+                    "name": "Название",
+                    "alias": "Nazvanie",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Название"
+                },
+                {
+                    "name": "Вид",
+                    "alias": "Vid",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "Вид"
+                },
+                {
+                    "name": "Подвид",
+                    "alias": "Podvid",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "Подвид"
+                },
+                {
+                    "name": "Тип",
+                    "alias": "Tip",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Тип"
+                },
+                {
+                    "name": "Сорт",
+                    "alias": "Sort",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Сорт"
+                },
+                {
+                    "name": "ОКДП",
+                    "alias": "OKDP",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "ОКДП"
+                },
+                {
+                    "name": "Ед.изм.",
+                    "alias": "Yed_izm_",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Ед.изм."
+                },
+                {
+                    "name": "Ед.изм. 2",
+                    "alias": "Yed_izm__2",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Ед.изм. 2"
+                },
+                {
+                    "name": "Вес",
+                    "alias": "Ves",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Вес"
+                },
+                {
+                    "name": "Ставка НДС",
+                    "alias": "Stavka_NDS",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "Ставка НДС"
+                },
+                {
+                    "name": "Ставка НП",
+                    "alias": "Stavka_NP",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "Ставка НП"
+                },
+                {
+                    "name": "Ставка Тамож.",
+                    "alias": "Stavka_Tamozh_",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Ставка Тамож."
+                },
+                {
+                    "name": "Это тара",
+                    "alias": "Eto_tara",
+                    "type": "Int",
+                    "sql_type": "tinyint",
+                    "description": "Это тара"
+                },
+                {
+                    "name": "Залог. сумма",
+                    "alias": "Zalog__summa",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Залог. сумма"
+                },
+                {
+                    "name": "Аморт. сумма",
+                    "alias": "Amort__summa",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Аморт. сумма"
+                },
+                {
+                    "name": "Тара",
+                    "alias": "Tara",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "Тара"
+                },
+                {
+                    "name": "Кол. в упаковке",
+                    "alias": "Kol__v_upakovke",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Кол. в упаковке"
+                },
+                {
+                    "name": "Тара 2",
+                    "alias": "Tara_2",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "Тара 2"
+                },
+                {
+                    "name": "Кол. в упаковке 2",
+                    "alias": "Kol__v_upakovke_2",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Кол. в упаковке 2"
+                },
+                {
+                    "name": "Производитель",
+                    "alias": "Proizvoditel",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Производитель"
+                },
+                {
+                    "name": "Страна",
+                    "alias": "Strana",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Страна"
+                },
+                {
+                    "name": "Полное название",
+                    "alias": "Polnoe_nazvanie",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Полное название"
+                },
+                {
+                    "name": "Примечание",
+                    "alias": "Primechanie",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Примечание"
+                },
+                {
+                    "name": "Ценовая группа",
+                    "alias": "Tsenovaya_gruppa",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Ценовая группа"
                 },
                 {
                     "name": "Автономер",
@@ -1328,39 +459,25 @@
                     "description": "Автономер"
                 },
                 {
-                    "name": "Вид",
-                    "alias": "Vid",
-                    "type": "Int",
-                    "sql_type": "smallint",
-                    "description": "Вид"
-                },
-                {
-                    "name": "Дата",
-                    "alias": "Data",
-                    "type": "String",
-                    "sql_type": "smalldatetime",
-                    "description": "Дата"
-                },
-                {
-                    "name": "Юр.лицо",
-                    "alias": "Yur_litso",
-                    "type": "Int",
-                    "sql_type": "smallint",
-                    "description": "Юр.лицо"
-                },
-                {
-                    "name": "Договор",
-                    "alias": "Dogovor",
+                    "name": "Склад",
+                    "alias": "Sklad",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Договор"
+                    "description": "Склад"
                 },
                 {
-                    "name": "Тип поставщика",
-                    "alias": "Tip_postavshchika",
+                    "name": "Штрих-код",
+                    "alias": "Shtrikh_kod",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "Тип поставщика"
+                    "description": "Штрих-код"
+                },
+                {
+                    "name": "Расфасовка в прайсе",
+                    "alias": "Rasfasovka_v_praise",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "Расфасовка в прайсе"
                 },
                 {
                     "name": "Поставщик",
@@ -1370,340 +487,67 @@
                     "description": "Поставщик"
                 },
                 {
-                    "name": "Тип получателя",
-                    "alias": "Tip_poluchatelya",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Тип получателя"
-                },
-                {
-                    "name": "Получатель",
-                    "alias": "Poluchatel",
+                    "name": "Распродажа",
+                    "alias": "Rasprodazha",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Получатель"
+                    "description": "Распродажа"
                 },
                 {
-                    "name": "Текст",
-                    "alias": "Tekst",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Текст"
-                },
-                {
-                    "name": "Грузоотправитель",
-                    "alias": "Gruzootpravitel",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Грузоотправитель"
-                },
-                {
-                    "name": "Грузополучатель",
-                    "alias": "Gruzopoluchatel",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Грузополучатель"
-                },
-                {
-                    "name": "Ответственный",
-                    "alias": "Otvetstvennii",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Ответственный"
-                },
-                {
-                    "name": "Водитель",
-                    "alias": "Voditel",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Водитель"
-                },
-                {
-                    "name": "Адрес",
-                    "alias": "Adres",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Адрес"
-                },
-                {
-                    "name": "Сумма",
-                    "alias": "Summa",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма"
-                },
-                {
-                    "name": "Валюта",
-                    "alias": "Valyuta",
-                    "type": "Int",
-                    "sql_type": "smallint",
-                    "description": "Валюта"
-                },
-                {
-                    "name": "Сумма руб.",
-                    "alias": "Summa_rub_",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма руб."
-                },
-                {
-                    "name": "Сумма у.е.",
-                    "alias": "Summa_u_e_",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма у.е."
-                },
-                {
-                    "name": "РС поставщика",
-                    "alias": "RS_postavshchika",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "РС поставщика"
-                },
-                {
-                    "name": "РС получателя",
-                    "alias": "RS_poluchatelya",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "РС получателя"
-                },
-                {
-                    "name": "Вид платежа",
-                    "alias": "Vid_platezha",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Вид платежа"
-                },
-                {
-                    "name": "Вид операции",
-                    "alias": "Vid_operatsii",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Вид операции"
-                },
-                {
-                    "name": "Назначение платежа",
-                    "alias": "Naznachenie_platezha",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Назначение платежа"
-                },
-                {
-                    "name": "Срок платежа",
-                    "alias": "Srok_platezha",
-                    "type": "String",
-                    "sql_type": "datetime",
-                    "description": "Срок платежа"
-                },
-                {
-                    "name": "Очередность платежа",
-                    "alias": "Ocherednost_platezha",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Очередность платежа"
-                },
-                {
-                    "name": "Кто создал",
-                    "alias": "Kto_sozdal",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Кто создал"
-                },
-                {
-                    "name": "Когда создал",
-                    "alias": "Kogda_sozdal",
-                    "type": "String",
-                    "sql_type": "datetime",
-                    "description": "Когда создал"
-                },
-                {
-                    "name": "Кто изменил",
-                    "alias": "Kto_izmenil",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Кто изменил"
-                },
-                {
-                    "name": "Когда изменил",
-                    "alias": "Kogda_izmenil",
-                    "type": "String",
-                    "sql_type": "datetime",
-                    "description": "Когда изменил"
-                },
-                {
-                    "name": "Есть НДС",
-                    "alias": "Yest_NDS",
+                    "name": "Включить в прайс",
+                    "alias": "Vklyuchit_v_prais",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "Есть НДС"
+                    "description": "Включить в прайс"
                 },
                 {
-                    "name": "НДС в том числе",
-                    "alias": "NDS_v_tom_chisle",
+                    "name": "Брутто",
+                    "alias": "Brutto",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Брутто"
+                },
+                {
+                    "name": "Группа ТМЦ",
+                    "alias": "Gruppa_TMTs",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "НДС в том числе"
+                    "description": "Группа ТМЦ"
                 },
                 {
-                    "name": "Есть НП",
-                    "alias": "Yest_NP",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "Есть НП"
-                },
-                {
-                    "name": "НП в том числе",
-                    "alias": "NP_v_tom_chisle",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "НП в том числе"
-                },
-                {
-                    "name": "Сумма спецификации",
-                    "alias": "Summa_spetsifikatsii",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма спецификации"
-                },
-                {
-                    "name": "Сумма без налогов",
-                    "alias": "Summa_bez_nalogov",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма без налогов"
-                },
-                {
-                    "name": "Сумма НДС 10",
-                    "alias": "Summa_NDS_10",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма НДС 10"
-                },
-                {
-                    "name": "Сумма НДС 20",
-                    "alias": "Summa_NDS_20",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма НДС 20"
-                },
-                {
-                    "name": "Сумма НП",
-                    "alias": "Summa_NP",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма НП"
-                },
-                {
-                    "name": "Сумма НДС 18",
-                    "alias": "Summa_NDS_18",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма НДС 18"
-                },
-                {
-                    "name": "Сумма возвратной тары",
-                    "alias": "Summa_vozvratnoi_tari",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма возвратной тары"
-                },
-                {
-                    "name": "Сумма амортизации тары",
-                    "alias": "Summa_amortizatsii_tari",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма амортизации тары"
-                },
-                {
-                    "name": "Сумма таможенных платежей",
-                    "alias": "Summa_tamozhennikh_platezhei",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма таможенных платежей"
-                },
-                {
-                    "name": "Сумма спецификации всего",
-                    "alias": "Summa_spetsifikatsii_vsego",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Сумма спецификации всего"
-                },
-                {
-                    "name": "Валюта спецификации",
-                    "alias": "Valyuta_spetsifikatsii",
+                    "name": "Входит в группу ТМЦ",
+                    "alias": "Vkhodit_v_gruppu_TMTs",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Валюта спецификации"
+                    "description": "Входит в группу ТМЦ"
                 },
                 {
-                    "name": "Дата генерации",
-                    "alias": "Data_generatsii",
-                    "type": "String",
-                    "sql_type": "smalldatetime",
-                    "description": "Дата генерации"
+                    "name": "Норма запаса",
+                    "alias": "Norma_zapasa",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Норма запаса"
                 },
                 {
-                    "name": "Ошибки генерации",
-                    "alias": "Oshibki_generatsii",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Ошибки генерации"
+                    "name": "Количество для комплекта",
+                    "alias": "Kolichestvo_dlya_komplekta",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Количество для комплекта"
                 },
                 {
-                    "name": "Проведен",
-                    "alias": "Proveden",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "Проведен"
+                    "name": "Объем Брутто",
+                    "alias": "Obem_Brutto",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Объем Брутто"
                 },
                 {
-                    "name": "Ошибки зарплаты",
-                    "alias": "Oshibki_zarplati",
-                    "type": "Int",
-                    "sql_type": "smallint",
-                    "description": "Ошибки зарплаты"
-                },
-                {
-                    "name": "Предупреждения зарплаты",
-                    "alias": "Preduprezhdeniya_zarplati",
-                    "type": "Int",
-                    "sql_type": "smallint",
-                    "description": "Предупреждения зарплаты"
-                },
-                {
-                    "name": "Без пересчета НДС",
-                    "alias": "Bez_perescheta_NDS",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "Без пересчета НДС"
-                },
-                {
-                    "name": "Расчет НДС от суммы документа",
-                    "alias": "Raschet_NDS_ot_summi_dokumenta",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "Расчет НДС от суммы документа"
-                },
-                {
-                    "name": "Заблокирован",
-                    "alias": "Zablokirovan",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "Заблокирован"
-                },
-                {
-                    "name": "Номер счета-фактуры",
-                    "alias": "Nomer_scheta_fakturi",
+                    "name": "Код ТН ВЭД",
+                    "alias": "Kod_TN_VED",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "Номер счета-фактуры"
-                },
-                {
-                    "name": "Дата счета-фактуры",
-                    "alias": "Data_scheta_fakturi",
-                    "type": "String",
-                    "sql_type": "datetime",
-                    "description": "Дата счета-фактуры"
+                    "description": "Код ТН ВЭД"
                 },
                 {
                     "name": "ГТД",
@@ -1713,137 +557,32 @@
                     "description": "ГТД"
                 },
                 {
-                    "name": "ПП.Статус плательщика",
-                    "alias": "PP_Status_platelshchika",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "ПП.Статус плательщика"
-                },
-                {
-                    "name": "ПП.КБК",
-                    "alias": "PP_KBK",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "ПП.КБК"
-                },
-                {
-                    "name": "ПП.Код ОКАТО",
-                    "alias": "PP_Kod_OKATO",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "ПП.Код ОКАТО"
-                },
-                {
-                    "name": "ПП.Основание платежа",
-                    "alias": "PP_Osnovanie_platezha",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "ПП.Основание платежа"
-                },
-                {
-                    "name": "ПП.Налоговый период",
-                    "alias": "PP_Nalogovii_period",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "ПП.Налоговый период"
-                },
-                {
-                    "name": "ПП.Номер документа",
-                    "alias": "PP_Nomer_dokumenta",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "ПП.Номер документа"
-                },
-                {
-                    "name": "ПП.Дата документа",
-                    "alias": "PP_Data_dokumenta",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "ПП.Дата документа"
-                },
-                {
-                    "name": "ПП.Тип платежа",
-                    "alias": "PP_Tip_platezha",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "ПП.Тип платежа"
-                },
-                {
-                    "name": "Содержание операции в книге дох.",
-                    "alias": "Soderzhanie_operatsii_v_knige_dokh_",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Содержание операции в книге дох."
-                },
-                {
-                    "name": "Дата поступления счета-фактуры",
-                    "alias": "Data_postupleniya_scheta_fakturi",
-                    "type": "String",
-                    "sql_type": "datetime",
-                    "description": "Дата поступления счета-фактуры"
-                },
-                {
-                    "name": "_Seller_ID",
-                    "alias": "_Seller_ID",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_Seller_ID"
-                },
-                {
-                    "name": "_Seller_Checksum",
-                    "alias": "_Seller_Checksum",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_Seller_Checksum"
-                },
-                {
-                    "name": "_Дата начала",
-                    "alias": "_Data_nachala",
-                    "type": "String",
-                    "sql_type": "datetime",
-                    "description": "_Дата начала"
-                },
-                {
-                    "name": "_Дата конца",
-                    "alias": "_Data_kontsa",
-                    "type": "String",
-                    "sql_type": "datetime",
-                    "description": "_Дата конца"
-                },
-                {
-                    "name": "Внутридневной приоритет",
-                    "alias": "Vnutridnevnoi_prioritet",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Внутридневной приоритет"
-                },
-                {
-                    "name": "Номер доп.листа",
-                    "alias": "Nomer_dop_lista",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Номер доп.листа"
-                },
-                {
-                    "name": "_Коэффициент сверхурочных",
-                    "alias": "_Koeffitsient_sverkhurochnikh",
+                    "name": "Длина брутто",
+                    "alias": "Dlina_brutto",
                     "type": "Float",
                     "sql_type": "money",
-                    "description": "_Коэффициент сверхурочных"
+                    "description": "Длина брутто"
                 },
                 {
-                    "name": "_Номер приказа",
-                    "alias": "_Nomer_prikaza",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_Номер приказа"
+                    "name": "Ширина брутто",
+                    "alias": "Shirina_brutto",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Ширина брутто"
                 },
                 {
-                    "name": "_Дата приказа",
-                    "alias": "_Data_prikaza",
-                    "type": "String",
-                    "sql_type": "datetime",
-                    "description": "_Дата приказа"
+                    "name": "Высота брутто",
+                    "alias": "Visota_brutto",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Высота брутто"
+                },
+                {
+                    "name": "Площадь брутто",
+                    "alias": "Ploshchad_brutto",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Площадь брутто"
                 },
                 {
                     "name": "ReplGuid",
@@ -1853,11 +592,207 @@
                     "description": "ReplGuid"
                 },
                 {
-                    "name": "_скл_Задание",
-                    "alias": "_skl_Zadanie",
+                    "name": "_Партионный",
+                    "alias": "_Partionnii",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Партионный"
+                },
+                {
+                    "name": "_ВведеноТСД",
+                    "alias": "_VvedenoTSD",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_ВведеноТСД"
+                },
+                {
+                    "name": "_Габаритный",
+                    "alias": "_Gabaritnii",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Габаритный"
+                },
+                {
+                    "name": "_Размещ1ярус",
+                    "alias": "_Razmeshch1yarus",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Размещ1ярус"
+                },
+                {
+                    "name": "_База1С",
+                    "alias": "_Baza1S",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_База1С"
+                },
+                {
+                    "name": "_Цена",
+                    "alias": "_Tsena",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "_Цена"
+                },
+                {
+                    "name": "_ManyBarCode",
+                    "alias": "_ManyBarCode",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_ManyBarCode"
+                },
+                {
+                    "name": "_Принцип списания",
+                    "alias": "_Printsip_spisaniya",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Принцип списания"
+                },
+                {
+                    "name": "_КодКлиента",
+                    "alias": "_KodKlienta",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_КодКлиента"
+                },
+                {
+                    "name": "_Основной",
+                    "alias": "_Osnovnoi",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Основной"
+                },
+                {
+                    "name": "_Фото",
+                    "alias": "_Foto",
+                    "type": "String",
+                    "sql_type": "image",
+                    "description": "_Фото"
+                },
+                {
+                    "name": "_Фото_Иконка",
+                    "alias": "_Foto_Ikonka",
+                    "type": "String",
+                    "sql_type": "image",
+                    "description": "_Фото_Иконка"
+                },
+                {
+                    "name": "_Категория оборачиваемости",
+                    "alias": "_Kategoriya_oborachivaemosti",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Категория оборачиваемости"
+                },
+                {
+                    "name": "_Валюта",
+                    "alias": "_Valyuta",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "_скл_Задание"
+                    "description": "_Валюта"
+                },
+                {
+                    "name": "_Приход ТСД",
+                    "alias": "_Prikhod_TSD",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Приход ТСД"
+                },
+                {
+                    "name": "_Штрих-код клиента",
+                    "alias": "_Shtrikh_kod_klienta",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Штрих-код клиента"
+                },
+                {
+                    "name": "_Состав",
+                    "alias": "_Sostav",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Состав"
+                },
+                {
+                    "name": "_Производитель клиента",
+                    "alias": "_Proizvoditel_klienta",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Производитель клиента"
+                },
+                {
+                    "name": "_Поставщик клиента",
+                    "alias": "_Postavshchik_klienta",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Поставщик клиента"
+                },
+                {
+                    "name": "_Назначение",
+                    "alias": "_Naznachenie",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Назначение"
+                },
+                {
+                    "name": "_Коэффициент",
+                    "alias": "_Koeffitsient",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "_Коэффициент"
+                },
+                {
+                    "name": "_Норма паллетизации",
+                    "alias": "_Norma_palletizatsii",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Норма паллетизации"
+                },
+                {
+                    "name": "_Описание",
+                    "alias": "_Opisanie",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Описание"
+                },
+                {
+                    "name": "_Сертификат",
+                    "alias": "_Sertifikat",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Сертификат"
+                },
+                {
+                    "name": "_ЭтоКоробка",
+                    "alias": "_EtoKorobka",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_ЭтоКоробка"
+                },
+                {
+                    "name": "_СпособХранения",
+                    "alias": "_SposobKhraneniya",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_СпособХранения"
+                },
+                {
+                    "name": "_СпособХранения2",
+                    "alias": "_SposobKhraneniya2",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_СпособХранения2"
+                },
+                {
+                    "name": "_Целое",
+                    "alias": "_Tseloe",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Целое"
+                },
+                {
+                    "name": "_Неснижаемый запас",
+                    "alias": "_Nesnizhaemii_zapas",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Неснижаемый запас"
                 },
                 {
                     "name": "_1С_GUID",
@@ -1867,137 +802,214 @@
                     "description": "_1С_GUID"
                 },
                 {
-                    "name": "_Водитель",
-                    "alias": "_Voditel",
+                    "name": "_ВидНомер",
+                    "alias": "_VidNomer",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "_Водитель"
+                    "description": "_ВидНомер"
                 },
                 {
-                    "name": "_НомерАвтомашины",
-                    "alias": "_NomerAvtomashini",
+                    "name": "_ВидНазвание",
+                    "alias": "_VidNazvanie",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "_НомерАвтомашины"
+                    "description": "_ВидНазвание"
                 },
                 {
-                    "name": "_3plClient",
-                    "alias": "_3plClient",
+                    "name": "_Длина нетто",
+                    "alias": "_Dlina_netto",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "_Длина нетто"
+                },
+                {
+                    "name": "_Ширина нетто",
+                    "alias": "_Shirina_netto",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "_Ширина нетто"
+                },
+                {
+                    "name": "_Высота нетто",
+                    "alias": "_Visota_netto",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "_Высота нетто"
+                },
+                {
+                    "name": "_Вес нетто",
+                    "alias": "_Ves_netto",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "_Вес нетто"
+                },
+                {
+                    "name": "_СрокГодностиДни",
+                    "alias": "_SrokGodnostiDni",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "_3plClient"
+                    "description": "_СрокГодностиДни"
                 },
                 {
-                    "name": "Исходный счет-фактура",
-                    "alias": "Iskhodnii_schet_faktura",
+                    "name": "_СрокГодностиЛогДни",
+                    "alias": "_SrokGodnostiLogDni",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Исходный счет-фактура"
+                    "description": "_СрокГодностиЛогДни"
                 },
                 {
-                    "name": "Номер исправления СФ",
-                    "alias": "Nomer_ispravleniya_SF",
+                    "name": "_РежимХранения",
+                    "alias": "_RezhimKhraneniya",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_РежимХранения"
+                },
+                {
+                    "name": "_Тип товара",
+                    "alias": "_Tip_tovara",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Тип товара"
+                },
+                {
+                    "name": "_ЭтоКроссдокинг",
+                    "alias": "_EtoKrossdoking",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_ЭтоКроссдокинг"
+                },
+                {
+                    "name": "_ТипПартионности",
+                    "alias": "_TipPartionnosti",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_ТипПартионности"
+                },
+                {
+                    "name": "_Продовольственный",
+                    "alias": "_Prodovolstvennii",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Продовольственный"
+                },
+                {
+                    "name": "_ВидНепродТовара",
+                    "alias": "_VidNeprodTovara",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_ВидНепродТовара"
+                },
+                {
+                    "name": "_Вес целой упаковки",
+                    "alias": "_Ves_tseloi_upakovki",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "_Вес целой упаковки"
+                },
+                {
+                    "name": "_ТипОтбора",
+                    "alias": "_TipOtbora",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_ТипОтбора"
+                },
+                {
+                    "name": "_СрокДни",
+                    "alias": "_SrokDni",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Номер исправления СФ"
+                    "description": "_СрокДни"
                 },
                 {
-                    "name": "Дата исправления СФ",
-                    "alias": "Data_ispravleniya_SF",
+                    "name": "_Производитель",
+                    "alias": "_Proizvoditel",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Производитель"
+                },
+                {
+                    "name": "_Сертификат Название",
+                    "alias": "_Sertifikat_Nazvanie",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Сертификат Название"
+                },
+                {
+                    "name": "_Сертификат Дата начала",
+                    "alias": "_Sertifikat_Data_nachala",
                     "type": "String",
                     "sql_type": "datetime",
-                    "description": "Дата исправления СФ"
+                    "description": "_Сертификат Дата начала"
                 },
                 {
-                    "name": "Код способа выставления СФ",
-                    "alias": "Kod_sposoba_vistavleniya_SF",
+                    "name": "_Сертификат Дата конца",
+                    "alias": "_Sertifikat_Data_kontsa",
+                    "type": "String",
+                    "sql_type": "datetime",
+                    "description": "_Сертификат Дата конца"
+                },
+                {
+                    "name": "_Code",
+                    "alias": "_Code",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Код способа выставления СФ"
+                    "description": "_Code"
                 },
                 {
-                    "name": "Код вида операции СФ",
-                    "alias": "Kod_vida_operatsii_SF",
+                    "name": "_Дата импорта из КИС",
+                    "alias": "_Data_importa_iz_KIS",
+                    "type": "String",
+                    "sql_type": "datetime",
+                    "description": "_Дата импорта из КИС"
+                },
+                {
+                    "name": "_ЭтоПризнакМэйлера",
+                    "alias": "_EtoPriznakMeilera",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_ЭтоПризнакМэйлера"
+                },
+                {
+                    "name": "_Взвешивание",
+                    "alias": "_Vzveshivanie",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Взвешивание"
+                },
+                {
+                    "name": "_Торговая марка",
+                    "alias": "_Torgovaya_marka",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Код вида операции СФ"
+                    "description": "_Торговая марка"
                 },
                 {
-                    "name": "_Причина возврата",
-                    "alias": "_Prichina_vozvrata",
+                    "name": "_Модель",
+                    "alias": "_Model",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "_Причина возврата"
+                    "description": "_Модель"
                 },
                 {
-                    "name": "_Отправить в Коммерсант",
-                    "alias": "_Otpravit_v_Kommersant",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "_Отправить в Коммерсант"
-                },
-                {
-                    "name": "_Отправить в УП",
-                    "alias": "_Otpravit_v_UP",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "_Отправить в УП"
-                },
-                {
-                    "name": "_Основной документ",
-                    "alias": "_Osnovnoi_dokument",
+                    "name": "_Количество в микс ячейке",
+                    "alias": "_Kolichestvo_v_miks_yacheike",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "_Основной документ"
+                    "description": "_Количество в микс ячейке"
                 },
                 {
-                    "name": "Уменьшение стоимости",
-                    "alias": "Umenshenie_stoimosti",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "Уменьшение стоимости"
-                },
-                {
-                    "name": "_ПоставкаЗавершена",
-                    "alias": "_PostavkaZavershena",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "_ПоставкаЗавершена"
-                },
-                {
-                    "name": "ПП.Код УИН",
-                    "alias": "PP_Kod_UIN",
+                    "name": "Примечание для комплекта",
+                    "alias": "Primechanie_dlya_komplekta",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "ПП.Код УИН"
+                    "description": "Примечание для комплекта"
                 },
                 {
-                    "name": "_ОбоснованиеОтказа",
-                    "alias": "_ObosnovanieOtkaza",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_ОбоснованиеОтказа"
-                },
-                {
-                    "name": "Тип посредника",
-                    "alias": "Tip_posrednika",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Тип посредника"
-                },
-                {
-                    "name": "Посредник",
-                    "alias": "Posrednik",
+                    "name": "_Карточка партии",
+                    "alias": "_Kartochka_partii",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Посредник"
-                },
-                {
-                    "name": "_TimeStamp",
-                    "alias": "_TimeStamp",
-                    "type": "String",
-                    "sql_type": "timestamp",
-                    "description": "_TimeStamp"
+                    "description": "_Карточка партии"
                 },
                 {
                     "name": "_Этаж",
@@ -2007,20 +1019,90 @@
                     "description": "_Этаж"
                 },
                 {
-                    "name": "Идентификатор госконтракта",
-                    "alias": "Identifikator_goskontrakta",
+                    "name": "_ГП1",
+                    "alias": "_GP1",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_ГП1"
+                },
+                {
+                    "name": "_Индекс поставщика",
+                    "alias": "_Indeks_postavshchika",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "Идентификатор госконтракта"
+                    "description": "_Индекс поставщика"
+                },
+                {
+                    "name": "_ImportTimeStamp",
+                    "alias": "_ImportTimeStamp",
+                    "type": "String",
+                    "sql_type": "binary",
+                    "description": "_ImportTimeStamp"
+                },
+                {
+                    "name": "_TimeStamp",
+                    "alias": "_TimeStamp",
+                    "type": "String",
+                    "sql_type": "timestamp",
+                    "description": "_TimeStamp"
+                },
+                {
+                    "name": "_erp_Включить в прайс",
+                    "alias": "_erp_Vklyuchit_v_prais",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_erp_Включить в прайс"
+                },
+                {
+                    "name": "_Кратность объема",
+                    "alias": "_Kratnost_obema",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Кратность объема"
+                },
+                {
+                    "name": "_ЭтоГруппа",
+                    "alias": "_EtoGruppa",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_ЭтоГруппа"
+                },
+                {
+                    "name": "_Цвет",
+                    "alias": "_Tsvet",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Цвет"
+                },
+                {
+                    "name": "_ВесПроизводителя",
+                    "alias": "_VesProizvoditelya",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_ВесПроизводителя"
+                },
+                {
+                    "name": "_ЖесткостьПаллета",
+                    "alias": "_ZhestkostPalleta",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_ЖесткостьПаллета"
+                },
+                {
+                    "name": "_Мин_отгр_кол",
+                    "alias": "_Min_otgr_kol",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "_Мин_отгр_кол"
                 }
             ],
             "dbo": "dbo",
-            "name": "Документ",
-            "description": "dbo.Документ \"ага\"",
-            "object_alias": "dbo_Dokument",
-            "array_alias": "dbo_Dokuments",
+            "name": "ТМЦ",
+            "description": "dbo.ТМЦ",
+            "object_alias": "TMC",
+            "array_alias": "TMCs",
             "disabled": false,
-            "version": 3
+            "version": 2
         }
     ]
 }
