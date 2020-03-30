@@ -110,11 +110,7 @@ export class Schema {
         }
 
         if (to_google_translate.length > 0) {
-            console.log("to_google_translate", to_google_translate);
-
-            //console.log(await translate(to_google_translate.join("\n")));
             let trans_res = (await translate(to_google_translate.join("\n"))).text.split("\n");
-            console.log("trans_res", trans_res);
 
             let index = 0;
             for (let translated of trans_res) {
@@ -122,7 +118,7 @@ export class Schema {
                 translated = translated.replace(/[^_a-zA-Z0-9+]+/gi, '_');
                 if ("0123456789".indexOf(translated[0]) > -1)
                     translated = "_" + translated;
-                this.info.translate[non_en_words[index]] = translated;
+                this.info.translate[to_google_translate[index]] = translated;
                 index++;
             }
             this.saveToJson();

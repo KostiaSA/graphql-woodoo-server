@@ -63,119 +63,392 @@
             "columns": [
                 {
                     "name": "Ключ",
-                    "alias": "Klyuch",
+                    "alias": "Key",
                     "type": "Int",
                     "sql_type": "int",
                     "description": "Ключ"
                 },
                 {
                     "name": "Номер",
-                    "alias": "Nomer",
+                    "alias": "room",
                     "type": "String",
                     "sql_type": "varchar",
                     "description": "Номер"
                 },
                 {
                     "name": "Название",
-                    "alias": "Nazvanie",
+                    "alias": "Title",
                     "type": "String",
                     "sql_type": "varchar",
                     "description": "Название"
                 },
                 {
-                    "name": "Тип",
-                    "alias": "Tip",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Тип"
-                },
-                {
-                    "name": "Запрос для просмотра",
-                    "alias": "Zapros_dlya_prosmotra",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Запрос для просмотра"
-                },
-                {
-                    "name": "Запрос для выбора",
-                    "alias": "Zapros_dlya_vibora",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Запрос для выбора"
-                },
-                {
-                    "name": "Из вида",
-                    "alias": "Iz_vida",
+                    "name": "Вид",
+                    "alias": "View",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Из вида"
+                    "description": "Вид"
                 },
                 {
-                    "name": "Автонумерация",
-                    "alias": "Avtonumeratsiya",
+                    "name": "ИНН",
+                    "alias": "TIN",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "Автонумерация"
+                    "description": "ИНН"
                 },
                 {
-                    "name": "Распродажа",
-                    "alias": "Rasprodazha",
+                    "name": "Город",
+                    "alias": "Town",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Город"
+                },
+                {
+                    "name": "Страна",
+                    "alias": "Country",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Страна"
+                },
+                {
+                    "name": "Адрес",
+                    "alias": "Address",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес"
+                },
+                {
+                    "name": "Юр. адрес",
+                    "alias": "Yur_address",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Юр. адрес"
+                },
+                {
+                    "name": "Телефон",
+                    "alias": "Telephone",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Телефон"
+                },
+                {
+                    "name": "Телефон по юр.адресу",
+                    "alias": "Phone_at_legal_address",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Телефон по юр.адресу"
+                },
+                {
+                    "name": "Телефон бухгалтера",
+                    "alias": "Accountant_Phone",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Телефон бухгалтера"
+                },
+                {
+                    "name": "Факс",
+                    "alias": "Fax",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Факс"
+                },
+                {
+                    "name": "Email",
+                    "alias": "Email",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Email"
+                },
+                {
+                    "name": "ОКОНХ",
+                    "alias": "OKONH",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "ОКОНХ"
+                },
+                {
+                    "name": "ОКПО",
+                    "alias": "OKPO",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "ОКПО"
+                },
+                {
+                    "name": "Регион",
+                    "alias": "Region",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Регион"
+                },
+                {
+                    "name": "Отрасль",
+                    "alias": "Industry",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Отрасль"
+                },
+                {
+                    "name": "Ответственный",
+                    "alias": "Responsible",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Распродажа"
+                    "description": "Ответственный"
                 },
                 {
-                    "name": "Группа ТМЦ",
-                    "alias": "Gruppa_TMTs",
+                    "name": "Скидка",
+                    "alias": "A_discount",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Скидка"
+                },
+                {
+                    "name": "Отсрочка",
+                    "alias": "Deferment",
+                    "type": "Int",
+                    "sql_type": "smallint",
+                    "description": "Отсрочка"
+                },
+                {
+                    "name": "Коэф. з/п агента",
+                    "alias": "Coef_s_n_agent",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Коэф. з/п агента"
+                },
+                {
+                    "name": "Дата договора",
+                    "alias": "agreement_date",
+                    "type": "String",
+                    "sql_type": "smalldatetime",
+                    "description": "Дата договора"
+                },
+                {
+                    "name": "Номер договора",
+                    "alias": "Number_of_contract",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Номер договора"
+                },
+                {
+                    "name": "Примечание",
+                    "alias": "Note",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Примечание"
+                },
+                {
+                    "name": "Полное название",
+                    "alias": "Full_title",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Полное название"
+                },
+                {
+                    "name": "Название по англ.",
+                    "alias": "Name_in_English",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Название по англ."
+                },
+                {
+                    "name": "Директор",
+                    "alias": "Director",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Директор"
+                },
+                {
+                    "name": "Телефон директора",
+                    "alias": "Director_s_Phone",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Телефон директора"
+                },
+                {
+                    "name": "Фин. директор",
+                    "alias": "Fin_director",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Фин. директор"
+                },
+                {
+                    "name": "Телефон фин. директора",
+                    "alias": "Phone_fin_directors",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Телефон фин. директора"
+                },
+                {
+                    "name": "Секретарь",
+                    "alias": "Secretary",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Секретарь"
+                },
+                {
+                    "name": "Телефон секретаря",
+                    "alias": "Secretary_s_phone",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Телефон секретаря"
+                },
+                {
+                    "name": "Представитель 1",
+                    "alias": "Representative_1",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Представитель 1"
+                },
+                {
+                    "name": "Телефон представителя 1",
+                    "alias": "Representative_s_phone_number_1",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Телефон представителя 1"
+                },
+                {
+                    "name": "Представитель 2",
+                    "alias": "Representative_2",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Представитель 2"
+                },
+                {
+                    "name": "Телефон представителя 2",
+                    "alias": "Representative_phone_number_2",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Телефон представителя 2"
+                },
+                {
+                    "name": "Представитель 3",
+                    "alias": "Representative_3",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Представитель 3"
+                },
+                {
+                    "name": "Телефон представителя 3",
+                    "alias": "Representative_Phone_3",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Телефон представителя 3"
+                },
+                {
+                    "name": "Адрес кому",
+                    "alias": "Address_to",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес кому"
+                },
+                {
+                    "name": "Расходный ордер кто",
+                    "alias": "Expense_order_who",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Расходный ордер кто"
+                },
+                {
+                    "name": "Расходный ордер паспорт",
+                    "alias": "Account_Passport",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Расходный ордер паспорт"
+                },
+                {
+                    "name": "Клиентская группа",
+                    "alias": "Customer_group",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Клиентская группа"
+                },
+                {
+                    "name": "Автономер",
+                    "alias": "Car_number",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Группа ТМЦ"
+                    "description": "Автономер"
                 },
                 {
-                    "name": "Запрос для партий ТМЦ",
-                    "alias": "Zapros_dlya_partii_TMTs",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Запрос для партий ТМЦ"
+                    "name": "Сектор развозки",
+                    "alias": "Shipping_Sector",
+                    "type": "Int",
+                    "sql_type": "smallint",
+                    "description": "Сектор развозки"
                 },
                 {
-                    "name": "Запрос для комплектующих",
-                    "alias": "Zapros_dlya_komplektuyushchikh",
+                    "name": "Способ оплаты",
+                    "alias": "Payment_method",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "Запрос для комплектующих"
+                    "description": "Способ оплаты"
                 },
                 {
-                    "name": "Запрос для штрих-кодов",
-                    "alias": "Zapros_dlya_shtrikh_kodov",
+                    "name": "Дата рождения клиента",
+                    "alias": "Customer_date_of_birth",
                     "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Запрос для штрих-кодов"
+                    "sql_type": "datetime",
+                    "description": "Дата рождения клиента"
                 },
                 {
-                    "name": "Запрос для ассортиментов",
-                    "alias": "Zapros_dlya_assortimentov",
+                    "name": "Пол клиента",
+                    "alias": "Customer_gender",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "Запрос для ассортиментов"
+                    "description": "Пол клиента"
                 },
                 {
-                    "name": "Запрос содержание драгметаллов",
-                    "alias": "Zapros_soderzhanie_dragmetallov",
+                    "name": "Вид клиента",
+                    "alias": "Customer_Type",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "Запрос содержание драгметаллов"
+                    "description": "Вид клиента"
                 },
                 {
-                    "name": "запрос для вида комплектующих",
-                    "alias": "zapros_dlya_vida_komplektuyushchikh",
+                    "name": "Сумма товарного кредита",
+                    "alias": "Product_Credit_Amount",
+                    "type": "Float",
+                    "sql_type": "money",
+                    "description": "Сумма товарного кредита"
+                },
+                {
+                    "name": "Валюта товарного кредита",
+                    "alias": "Commodity_loan_currency",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "Валюта товарного кредита"
+                },
+                {
+                    "name": "КПП",
+                    "alias": "Gearbox",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "запрос для вида комплектующих"
+                    "description": "КПП"
+                },
+                {
+                    "name": "Интерес",
+                    "alias": "Interest",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Интерес"
+                },
+                {
+                    "name": "Головная организация",
+                    "alias": "Head_organization",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "Головная организация"
+                },
+                {
+                    "name": "Правовая форма",
+                    "alias": "Legal_form",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "Правовая форма"
                 },
                 {
                     "name": "_База1С",
-                    "alias": "_Baza1S",
+                    "alias": "_Base1C",
                     "type": "String",
                     "sql_type": "varchar",
                     "description": "_База1С"
@@ -188,18 +461,179 @@
                     "description": "_Ключ1С"
                 },
                 {
+                    "name": "_Зал",
+                    "alias": "_Hall",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Зал"
+                },
+                {
+                    "name": "_Бригада",
+                    "alias": "__Brigade",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Бригада"
+                },
+                {
+                    "name": "ReplGuid",
+                    "alias": "Replguid",
+                    "type": "String",
+                    "sql_type": "uniqueidentifier",
+                    "description": "ReplGuid"
+                },
+                {
+                    "name": "_Seller",
+                    "alias": "_Seller",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Seller"
+                },
+                {
+                    "name": "_Правовая форма",
+                    "alias": "_Legal_form",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Правовая форма"
+                },
+                {
+                    "name": "_Печать примечания при отгрузке",
+                    "alias": "_Print_notes_on_shipment",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Печать примечания при отгрузке"
+                },
+                {
+                    "name": "_Орг от кого",
+                    "alias": "_Org_from_whom",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Орг от кого"
+                },
+                {
+                    "name": "_Орг для кого",
+                    "alias": "_Org_for_whom",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Орг для кого"
+                },
+                {
+                    "name": "ОКФС",
+                    "alias": "OKFS",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "ОКФС"
+                },
+                {
+                    "name": "ОКОПФ",
+                    "alias": "OKOPF",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "ОКОПФ"
+                },
+                {
+                    "name": "_Неполная отгрузка",
+                    "alias": "__Incomplete_shipment",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Неполная отгрузка"
+                },
+                {
+                    "name": "_ОКСЭТ_Ключ",
+                    "alias": "_OKSET_Klyuch",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_ОКСЭТ_Ключ"
+                },
+                {
+                    "name": "_Время работы с",
+                    "alias": "_Time_of_work_with",
+                    "type": "String",
+                    "sql_type": "datetime",
+                    "description": "_Время работы с"
+                },
+                {
+                    "name": "_Время работы по",
+                    "alias": "_Time_of_work_on",
+                    "type": "String",
+                    "sql_type": "datetime",
+                    "description": "_Время работы по"
+                },
+                {
+                    "name": "_Подпитка",
+                    "alias": "_Feeding",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Подпитка"
+                },
+                {
+                    "name": "_Прием без заявки",
+                    "alias": "_Reception_without_application",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Прием без заявки"
+                },
+                {
+                    "name": "_Ручной ввод количества",
+                    "alias": "_Manually_enter_quantity",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Ручной ввод количества"
+                },
+                {
+                    "name": "_Сверка с заявкой на приход",
+                    "alias": "_Confirmation_with_the_application_for_arrival",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_Сверка с заявкой на приход"
+                },
+                {
+                    "name": "_Вкл. проверку дог. ответ.хран",
+                    "alias": "__On_check_dog_answer_keeping",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_Вкл. проверку дог. ответ.хран"
+                },
+                {
                     "name": "_1С_GUID",
-                    "alias": "_1S_GUID",
+                    "alias": "_1C_GUID",
                     "type": "String",
                     "sql_type": "varchar",
                     "description": "_1С_GUID"
                 },
                 {
-                    "name": "_Номер родителя",
-                    "alias": "_Nomer_roditelya",
+                    "name": "_Грузополучатель",
+                    "alias": "_Consignee",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "_Номер родителя"
+                    "description": "_Грузополучатель"
+                },
+                {
+                    "name": "_ГрузополучательАдрес",
+                    "alias": "__Consignee_Address",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_ГрузополучательАдрес"
+                },
+                {
+                    "name": "_ЭтоГруппа",
+                    "alias": "_This_group",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_ЭтоГруппа"
+                },
+                {
+                    "name": "_ClientIDD",
+                    "alias": "_ClientIDD",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "_ClientIDD"
+                },
+                {
+                    "name": "_УдаленныйРегион",
+                    "alias": "_RemoteRegion",
+                    "type": "Boolean",
+                    "sql_type": "bit",
+                    "description": "_УдаленныйРегион"
                 },
                 {
                     "name": "_3plClient",
@@ -209,744 +643,158 @@
                     "description": "_3plClient"
                 },
                 {
-                    "name": "_ТипОтбора",
-                    "alias": "_TipOtbora",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_ТипОтбора"
-                },
-                {
-                    "name": "_Карточка новой партии",
-                    "alias": "_Kartochka_novoi_partii",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_Карточка новой партии"
-                },
-                {
-                    "name": "_Карточка нового брака",
-                    "alias": "_Kartochka_novogo_braka",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_Карточка нового брака"
-                },
-                {
-                    "name": "_Номер из КИС",
-                    "alias": "_Nomer_iz_KIS",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_Номер из КИС"
-                },
-                {
-                    "name": "_ВидНомер",
-                    "alias": "_VidNomer",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_ВидНомер"
-                },
-                {
-                    "name": "_ВидНазвание",
-                    "alias": "_VidNazvanie",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_ВидНазвание"
-                }
-            ],
-            "dbo": "dbo",
-            "name": "Вид ТМЦ",
-            "description": "dbo.Вид ТМЦ",
-            "object_alias": "TMC_vid",
-            "array_alias": "TMC_vids",
-            "disabled": false,
-            "version": 3
-        },
-        {
-            "dbname": "бухта-wms",
-            "columns": [
-                {
-                    "name": "Ключ",
-                    "alias": "Klyuch",
+                    "name": "_ПроцентОтклонения",
+                    "alias": "_Percent_Deviation",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Ключ"
+                    "description": "_ПроцентОтклонения"
                 },
                 {
-                    "name": "Номер",
-                    "alias": "Nomer",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Номер"
-                },
-                {
-                    "name": "AutoNum",
-                    "alias": "AutoNum",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "AutoNum"
-                },
-                {
-                    "name": "Название",
-                    "alias": "Nazvanie",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Название"
-                },
-                {
-                    "name": "Вид",
-                    "alias": "Vid",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Вид"
-                },
-                {
-                    "name": "Подвид",
-                    "alias": "Podvid",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Подвид"
-                },
-                {
-                    "name": "Тип",
-                    "alias": "Tip",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Тип"
-                },
-                {
-                    "name": "Сорт",
-                    "alias": "Sort",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Сорт"
-                },
-                {
-                    "name": "ОКДП",
-                    "alias": "OKDP",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "ОКДП"
-                },
-                {
-                    "name": "Ед.изм.",
-                    "alias": "Yed_izm_",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Ед.изм."
-                },
-                {
-                    "name": "Ед.изм. 2",
-                    "alias": "Yed_izm__2",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Ед.изм. 2"
-                },
-                {
-                    "name": "Вес",
-                    "alias": "Ves",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Вес"
-                },
-                {
-                    "name": "Ставка НДС",
-                    "alias": "Stavka_NDS",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Ставка НДС"
-                },
-                {
-                    "name": "Ставка НП",
-                    "alias": "Stavka_NP",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Ставка НП"
-                },
-                {
-                    "name": "Ставка Тамож.",
-                    "alias": "Stavka_Tamozh_",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Ставка Тамож."
-                },
-                {
-                    "name": "Это тара",
-                    "alias": "Eto_tara",
-                    "type": "Int",
-                    "sql_type": "tinyint",
-                    "description": "Это тара"
-                },
-                {
-                    "name": "Залог. сумма",
-                    "alias": "Zalog__summa",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Залог. сумма"
-                },
-                {
-                    "name": "Аморт. сумма",
-                    "alias": "Amort__summa",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Аморт. сумма"
-                },
-                {
-                    "name": "Тара",
-                    "alias": "Tara",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Тара"
-                },
-                {
-                    "name": "Кол. в упаковке",
-                    "alias": "Kol__v_upakovke",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Кол. в упаковке"
-                },
-                {
-                    "name": "Тара 2",
-                    "alias": "Tara_2",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Тара 2"
-                },
-                {
-                    "name": "Кол. в упаковке 2",
-                    "alias": "Kol__v_upakovke_2",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Кол. в упаковке 2"
-                },
-                {
-                    "name": "Производитель",
-                    "alias": "Proizvoditel",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Производитель"
-                },
-                {
-                    "name": "Страна",
-                    "alias": "Strana",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Страна"
-                },
-                {
-                    "name": "Полное название",
-                    "alias": "Polnoe_nazvanie",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Полное название"
-                },
-                {
-                    "name": "Примечание",
-                    "alias": "Primechanie",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Примечание"
-                },
-                {
-                    "name": "Ценовая группа",
-                    "alias": "Tsenovaya_gruppa",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Ценовая группа"
-                },
-                {
-                    "name": "Автономер",
-                    "alias": "Avtonomer",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Автономер"
-                },
-                {
-                    "name": "Склад",
-                    "alias": "Sklad",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Склад"
-                },
-                {
-                    "name": "Штрих-код",
-                    "alias": "Shtrikh_kod",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Штрих-код"
-                },
-                {
-                    "name": "Расфасовка в прайсе",
-                    "alias": "Rasfasovka_v_praise",
+                    "name": "_Транспортная компания",
+                    "alias": "_Transport_company",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "Расфасовка в прайсе"
+                    "description": "_Транспортная компания"
                 },
                 {
-                    "name": "Поставщик",
-                    "alias": "Postavshchik",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Поставщик"
-                },
-                {
-                    "name": "Распродажа",
-                    "alias": "Rasprodazha",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "Распродажа"
-                },
-                {
-                    "name": "Включить в прайс",
-                    "alias": "Vklyuchit_v_prais",
+                    "name": "_Поставщик",
+                    "alias": "_The_supplier",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "Включить в прайс"
+                    "description": "_Поставщик"
                 },
                 {
-                    "name": "Брутто",
-                    "alias": "Brutto",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Брутто"
-                },
-                {
-                    "name": "Группа ТМЦ",
-                    "alias": "Gruppa_TMTs",
+                    "name": "_Запретить объединение",
+                    "alias": "_Prohibit_merging",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "Группа ТМЦ"
+                    "description": "_Запретить объединение"
                 },
                 {
-                    "name": "Входит в группу ТМЦ",
-                    "alias": "Vkhodit_v_gruppu_TMTs",
+                    "name": "_ПроцентОтклоненияПриОтгрузке",
+                    "alias": "_Percentage_Deviation_On_Shipment",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "Входит в группу ТМЦ"
+                    "description": "_ПроцентОтклоненияПриОтгрузке"
                 },
                 {
-                    "name": "Норма запаса",
-                    "alias": "Norma_zapasa",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Норма запаса"
-                },
-                {
-                    "name": "Количество для комплекта",
-                    "alias": "Kolichestvo_dlya_komplekta",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Количество для комплекта"
-                },
-                {
-                    "name": "Объем Брутто",
-                    "alias": "Obem_Brutto",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Объем Брутто"
-                },
-                {
-                    "name": "Код ТН ВЭД",
-                    "alias": "Kod_TN_VED",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "Код ТН ВЭД"
-                },
-                {
-                    "name": "ГТД",
-                    "alias": "GTD",
+                    "name": "_Приоритет",
+                    "alias": "_A_priority",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "ГТД"
+                    "description": "_Приоритет"
                 },
                 {
-                    "name": "Длина брутто",
-                    "alias": "Dlina_brutto",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Длина брутто"
-                },
-                {
-                    "name": "Ширина брутто",
-                    "alias": "Shirina_brutto",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Ширина брутто"
-                },
-                {
-                    "name": "Высота брутто",
-                    "alias": "Visota_brutto",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Высота брутто"
-                },
-                {
-                    "name": "Площадь брутто",
-                    "alias": "Ploshchad_brutto",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "Площадь брутто"
-                },
-                {
-                    "name": "ReplGuid",
-                    "alias": "ReplGuid",
-                    "type": "String",
-                    "sql_type": "uniqueidentifier",
-                    "description": "ReplGuid"
-                },
-                {
-                    "name": "_Партионный",
-                    "alias": "_Partionnii",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_Партионный"
-                },
-                {
-                    "name": "_ВведеноТСД",
-                    "alias": "_VvedenoTSD",
+                    "name": "_Не запрашивать габариты паллеты",
+                    "alias": "_Do_not_request_pallet_dimensions",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "_ВведеноТСД"
+                    "description": "_Не запрашивать габариты паллеты"
                 },
                 {
-                    "name": "_Габаритный",
-                    "alias": "_Gabaritnii",
+                    "name": "_Не выводить этикетку А4",
+                    "alias": "_Do_not_display_the_A4_label",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "_Габаритный"
+                    "description": "_Не выводить этикетку А4"
                 },
                 {
-                    "name": "_Размещ1ярус",
-                    "alias": "_Razmeshch1yarus",
+                    "name": "_Не создавать задание УПАК",
+                    "alias": "_Do_not_create_an_UPAK_assignment",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "_Размещ1ярус"
+                    "description": "_Не создавать задание УПАК"
                 },
                 {
-                    "name": "_База1С",
-                    "alias": "_Baza1S",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_База1С"
-                },
-                {
-                    "name": "_Цена",
-                    "alias": "_Tsena",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "_Цена"
-                },
-                {
-                    "name": "_ManyBarCode",
-                    "alias": "_ManyBarCode",
+                    "name": "_АвтоПеремПослеРАЗГР",
+                    "alias": "_AutoPere_After_AFTER",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "_ManyBarCode"
+                    "description": "_АвтоПеремПослеРАЗГР"
                 },
                 {
-                    "name": "_Принцип списания",
-                    "alias": "_Printsip_spisaniya",
+                    "name": "_Путь выгрузки остатков",
+                    "alias": "__Way_of_unloading_residues",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "_Принцип списания"
+                    "description": "_Путь выгрузки остатков"
                 },
                 {
-                    "name": "_КодКлиента",
-                    "alias": "_KodKlienta",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_КодКлиента"
-                },
-                {
-                    "name": "_Основной",
-                    "alias": "_Osnovnoi",
+                    "name": "_Фургон",
+                    "alias": "_Van",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "_Основной"
+                    "description": "_Фургон"
                 },
                 {
-                    "name": "_Фото",
-                    "alias": "_Foto",
-                    "type": "String",
-                    "sql_type": "image",
-                    "description": "_Фото"
-                },
-                {
-                    "name": "_Фото_Иконка",
-                    "alias": "_Foto_Ikonka",
-                    "type": "String",
-                    "sql_type": "image",
-                    "description": "_Фото_Иконка"
-                },
-                {
-                    "name": "_Категория оборачиваемости",
-                    "alias": "_Kategoriya_oborachivaemosti",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_Категория оборачиваемости"
-                },
-                {
-                    "name": "_Валюта",
-                    "alias": "_Valyuta",
+                    "name": "_Очередность доставки",
+                    "alias": "__Delivery_Order",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "_Валюта"
+                    "description": "_Очередность доставки"
                 },
                 {
-                    "name": "_Приход ТСД",
-                    "alias": "_Prikhod_TSD",
+                    "name": "_Разрешить пропуск УПАК",
+                    "alias": "_Allow_UPAK_pass",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "_Приход ТСД"
+                    "description": "_Разрешить пропуск УПАК"
                 },
                 {
-                    "name": "_Штрих-код клиента",
-                    "alias": "_Shtrikh_kod_klienta",
+                    "name": "_СФ Адрес",
+                    "alias": "__Address",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "_Штрих-код клиента"
+                    "description": "_СФ Адрес"
                 },
                 {
-                    "name": "_Состав",
-                    "alias": "_Sostav",
+                    "name": "_СФ Название",
+                    "alias": "__Title",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "_Состав"
+                    "description": "_СФ Название"
                 },
                 {
-                    "name": "_Производитель клиента",
-                    "alias": "_Proizvoditel_klienta",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_Производитель клиента"
-                },
-                {
-                    "name": "_Поставщик клиента",
-                    "alias": "_Postavshchik_klienta",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_Поставщик клиента"
-                },
-                {
-                    "name": "_Назначение",
-                    "alias": "_Naznachenie",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_Назначение"
-                },
-                {
-                    "name": "_Коэффициент",
-                    "alias": "_Koeffitsient",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "_Коэффициент"
-                },
-                {
-                    "name": "_Норма паллетизации",
-                    "alias": "_Norma_palletizatsii",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_Норма паллетизации"
-                },
-                {
-                    "name": "_Описание",
-                    "alias": "_Opisanie",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_Описание"
-                },
-                {
-                    "name": "_Сертификат",
-                    "alias": "_Sertifikat",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_Сертификат"
-                },
-                {
-                    "name": "_ЭтоКоробка",
-                    "alias": "_EtoKorobka",
+                    "name": "_СФ Печатать",
+                    "alias": "__Print",
                     "type": "Boolean",
                     "sql_type": "bit",
-                    "description": "_ЭтоКоробка"
+                    "description": "_СФ Печатать"
                 },
                 {
-                    "name": "_СпособХранения",
-                    "alias": "_SposobKhraneniya",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_СпособХранения"
-                },
-                {
-                    "name": "_СпособХранения2",
-                    "alias": "_SposobKhraneniya2",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_СпособХранения2"
-                },
-                {
-                    "name": "_Целое",
-                    "alias": "_Tseloe",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "_Целое"
-                },
-                {
-                    "name": "_Неснижаемый запас",
-                    "alias": "_Nesnizhaemii_zapas",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_Неснижаемый запас"
-                },
-                {
-                    "name": "_1С_GUID",
-                    "alias": "_1S_GUID",
+                    "name": "_Банк",
+                    "alias": "_Bank",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "_1С_GUID"
+                    "description": "_Банк"
                 },
                 {
-                    "name": "_ВидНомер",
-                    "alias": "_VidNomer",
+                    "name": "_Банк город",
+                    "alias": "_Bank_city",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "_ВидНомер"
+                    "description": "_Банк город"
                 },
                 {
-                    "name": "_ВидНазвание",
-                    "alias": "_VidNazvanie",
+                    "name": "_Банк РС",
+                    "alias": "_Bank_RS",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "_ВидНазвание"
+                    "description": "_Банк РС"
                 },
                 {
-                    "name": "_Длина нетто",
-                    "alias": "_Dlina_netto",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "_Длина нетто"
-                },
-                {
-                    "name": "_Ширина нетто",
-                    "alias": "_Shirina_netto",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "_Ширина нетто"
-                },
-                {
-                    "name": "_Высота нетто",
-                    "alias": "_Visota_netto",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "_Высота нетто"
-                },
-                {
-                    "name": "_Вес нетто",
-                    "alias": "_Ves_netto",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "_Вес нетто"
-                },
-                {
-                    "name": "_СрокГодностиДни",
-                    "alias": "_SrokGodnostiDni",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_СрокГодностиДни"
-                },
-                {
-                    "name": "_СрокГодностиЛогДни",
-                    "alias": "_SrokGodnostiLogDni",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_СрокГодностиЛогДни"
-                },
-                {
-                    "name": "_РежимХранения",
-                    "alias": "_RezhimKhraneniya",
+                    "name": "_Банк КС",
+                    "alias": "_Bank_KS",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "_РежимХранения"
+                    "description": "_Банк КС"
                 },
                 {
-                    "name": "_Тип товара",
-                    "alias": "_Tip_tovara",
+                    "name": "_Банк БИК",
+                    "alias": "_BIK_BIK",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "_Тип товара"
-                },
-                {
-                    "name": "_ЭтоКроссдокинг",
-                    "alias": "_EtoKrossdoking",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "_ЭтоКроссдокинг"
-                },
-                {
-                    "name": "_ТипПартионности",
-                    "alias": "_TipPartionnosti",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_ТипПартионности"
-                },
-                {
-                    "name": "_Продовольственный",
-                    "alias": "_Prodovolstvennii",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "_Продовольственный"
-                },
-                {
-                    "name": "_ВидНепродТовара",
-                    "alias": "_VidNeprodTovara",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_ВидНепродТовара"
-                },
-                {
-                    "name": "_Вес целой упаковки",
-                    "alias": "_Ves_tseloi_upakovki",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "_Вес целой упаковки"
-                },
-                {
-                    "name": "_ТипОтбора",
-                    "alias": "_TipOtbora",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_ТипОтбора"
-                },
-                {
-                    "name": "_СрокДни",
-                    "alias": "_SrokDni",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_СрокДни"
-                },
-                {
-                    "name": "_Производитель",
-                    "alias": "_Proizvoditel",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_Производитель"
-                },
-                {
-                    "name": "_Сертификат Название",
-                    "alias": "_Sertifikat_Nazvanie",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_Сертификат Название"
-                },
-                {
-                    "name": "_Сертификат Дата начала",
-                    "alias": "_Sertifikat_Data_nachala",
-                    "type": "String",
-                    "sql_type": "datetime",
-                    "description": "_Сертификат Дата начала"
-                },
-                {
-                    "name": "_Сертификат Дата конца",
-                    "alias": "_Sertifikat_Data_kontsa",
-                    "type": "String",
-                    "sql_type": "datetime",
-                    "description": "_Сертификат Дата конца"
+                    "description": "_Банк БИК"
                 },
                 {
                     "name": "_Code",
@@ -956,81 +804,46 @@
                     "description": "_Code"
                 },
                 {
+                    "name": "_Пакет_документов",
+                    "alias": "_DocumentPackage",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Пакет_документов"
+                },
+                {
                     "name": "_Дата импорта из КИС",
-                    "alias": "_Data_importa_iz_KIS",
+                    "alias": "_Date_of_import_from_CIS",
                     "type": "String",
                     "sql_type": "datetime",
                     "description": "_Дата импорта из КИС"
                 },
                 {
-                    "name": "_ЭтоПризнакМэйлера",
-                    "alias": "_EtoPriznakMeilera",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "_ЭтоПризнакМэйлера"
-                },
-                {
-                    "name": "_Взвешивание",
-                    "alias": "_Vzveshivanie",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "_Взвешивание"
-                },
-                {
-                    "name": "_Торговая марка",
-                    "alias": "_Torgovaya_marka",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_Торговая марка"
-                },
-                {
-                    "name": "_Модель",
-                    "alias": "_Model",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_Модель"
-                },
-                {
-                    "name": "_Количество в микс ячейке",
-                    "alias": "_Kolichestvo_v_miks_yacheike",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_Количество в микс ячейке"
-                },
-                {
-                    "name": "Примечание для комплекта",
-                    "alias": "Primechanie_dlya_komplekta",
+                    "name": "_Группа",
+                    "alias": "_Group",
                     "type": "String",
                     "sql_type": "varchar",
-                    "description": "Примечание для комплекта"
+                    "description": "_Группа"
                 },
                 {
-                    "name": "_Карточка партии",
-                    "alias": "_Kartochka_partii",
+                    "name": "_Группа код",
+                    "alias": "_Group_code",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "_Карточка партии"
+                    "description": "_Группа код"
                 },
                 {
-                    "name": "_Этаж",
-                    "alias": "_Etazh",
+                    "name": "_Клиент",
+                    "alias": "_Customer",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "_Этаж"
+                    "description": "_Клиент"
                 },
                 {
-                    "name": "_ГП1",
-                    "alias": "_GP1",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "_ГП1"
-                },
-                {
-                    "name": "_Индекс поставщика",
-                    "alias": "_Indeks_postavshchika",
-                    "type": "String",
-                    "sql_type": "varchar",
-                    "description": "_Индекс поставщика"
+                    "name": "_Рейс",
+                    "alias": "_Flight",
+                    "type": "Int",
+                    "sql_type": "int",
+                    "description": "_Рейс"
                 },
                 {
                     "name": "_ImportTimeStamp",
@@ -1040,72 +853,264 @@
                     "description": "_ImportTimeStamp"
                 },
                 {
-                    "name": "_TimeStamp",
-                    "alias": "_TimeStamp",
+                    "name": "Адрес Код",
+                    "alias": "Address_Code",
                     "type": "String",
-                    "sql_type": "timestamp",
-                    "description": "_TimeStamp"
+                    "sql_type": "varchar",
+                    "description": "Адрес Код"
                 },
                 {
-                    "name": "_erp_Включить в прайс",
-                    "alias": "_erp_Vklyuchit_v_prais",
-                    "type": "Boolean",
-                    "sql_type": "bit",
-                    "description": "_erp_Включить в прайс"
-                },
-                {
-                    "name": "_Кратность объема",
-                    "alias": "_Kratnost_obema",
+                    "name": "Адрес Регион код",
+                    "alias": "Address_Region_Code",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "_Кратность объема"
+                    "description": "Адрес Регион код"
                 },
                 {
-                    "name": "_ЭтоГруппа",
-                    "alias": "_EtoGruppa",
+                    "name": "Адрес Регион сокр",
+                    "alias": "Address_Region_abbr",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Регион сокр"
+                },
+                {
+                    "name": "Адрес Район",
+                    "alias": "Address_District",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Район"
+                },
+                {
+                    "name": "Адрес Район сокр",
+                    "alias": "Address_Sokr_District",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Район сокр"
+                },
+                {
+                    "name": "Адрес Город",
+                    "alias": "Address_City",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Город"
+                },
+                {
+                    "name": "Адрес Город сокр",
+                    "alias": "Address_City_Sokr",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Город сокр"
+                },
+                {
+                    "name": "Адрес Нас.пункт",
+                    "alias": "Address_Settlement",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Нас.пункт"
+                },
+                {
+                    "name": "Адрес Нас.пункт сокр",
+                    "alias": "Address_Settlement_",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Нас.пункт сокр"
+                },
+                {
+                    "name": "Адрес Улица",
+                    "alias": "Street_Address",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Улица"
+                },
+                {
+                    "name": "Адрес Улица сокр",
+                    "alias": "Address_Street_Socr",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Улица сокр"
+                },
+                {
+                    "name": "Адрес Дом",
+                    "alias": "Address_House",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Дом"
+                },
+                {
+                    "name": "Адрес Дом сокр",
+                    "alias": "Address_House_Socr",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Дом сокр"
+                },
+                {
+                    "name": "Адрес Корпус",
+                    "alias": "Address_Housing",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Корпус"
+                },
+                {
+                    "name": "Адрес Квартира",
+                    "alias": "Address_Apartment",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Квартира"
+                },
+                {
+                    "name": "Адрес Индекс",
+                    "alias": "Address_Zip",
+                    "type": "String",
+                    "sql_type": "varchar",
+                    "description": "Адрес Индекс"
+                },
+                {
+                    "name": "_Срок доставки",
+                    "alias": "_Delivery_period",
                     "type": "Int",
                     "sql_type": "int",
-                    "description": "_ЭтоГруппа"
-                },
-                {
-                    "name": "_Цвет",
-                    "alias": "_Tsvet",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_Цвет"
-                },
-                {
-                    "name": "_ВесПроизводителя",
-                    "alias": "_VesProizvoditelya",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_ВесПроизводителя"
-                },
-                {
-                    "name": "_ЖесткостьПаллета",
-                    "alias": "_ZhestkostPalleta",
-                    "type": "Int",
-                    "sql_type": "int",
-                    "description": "_ЖесткостьПаллета"
-                },
-                {
-                    "name": "_Мин_отгр_кол",
-                    "alias": "_Min_otgr_kol",
-                    "type": "Float",
-                    "sql_type": "money",
-                    "description": "_Мин_отгр_кол"
+                    "description": "_Срок доставки"
                 }
             ],
             "dbo": "dbo",
-            "name": "ТМЦ",
-            "description": "dbo.ТМЦ",
-            "object_alias": "TMC",
-            "array_alias": "TMCs",
+            "name": "Организация",
+            "description": "dbo.Организация",
+            "object_alias": "dbo_Organizatsiya",
+            "array_alias": "dbo_Organizatsiyas",
             "disabled": false,
-            "version": 2
+            "version": 1
         }
     ],
     "translate": {
-        "ключ": "key"
+        "Ключ": "Key",
+        "Номер": "room",
+        "Название": "Title",
+        "Вид": "View",
+        "ИНН": "TIN",
+        "Город": "Town",
+        "Страна": "Country",
+        "Адрес": "Address",
+        "Юр. адрес": "Yur_address",
+        "Телефон": "Telephone",
+        "Телефон по юр.адресу": "Phone_at_legal_address",
+        "Телефон бухгалтера": "Accountant_Phone",
+        "Факс": "Fax",
+        "Email": "Email",
+        "ОКОНХ": "OKONH",
+        "ОКПО": "OKPO",
+        "Регион": "Region",
+        "Отрасль": "Industry",
+        "Ответственный": "Responsible",
+        "Скидка": "A_discount",
+        "Отсрочка": "Deferment",
+        "Коэф. з/п агента": "Coef_s_n_agent",
+        "Дата договора": "agreement_date",
+        "Номер договора": "Number_of_contract",
+        "Примечание": "Note",
+        "Полное название": "Full_title",
+        "Название по англ.": "Name_in_English",
+        "Директор": "Director",
+        "Телефон директора": "Director_s_Phone",
+        "Фин. директор": "Fin_director",
+        "Телефон фин. директора": "Phone_fin_directors",
+        "Секретарь": "Secretary",
+        "Телефон секретаря": "Secretary_s_phone",
+        "Представитель 1": "Representative_1",
+        "Телефон представителя 1": "Representative_s_phone_number_1",
+        "Представитель 2": "Representative_2",
+        "Телефон представителя 2": "Representative_phone_number_2",
+        "Представитель 3": "Representative_3",
+        "Телефон представителя 3": "Representative_Phone_3",
+        "Адрес кому": "Address_to",
+        "Расходный ордер кто": "Expense_order_who",
+        "Расходный ордер паспорт": "Account_Passport",
+        "Клиентская группа": "Customer_group",
+        "Автономер": "Car_number",
+        "Сектор развозки": "Shipping_Sector",
+        "Способ оплаты": "Payment_method",
+        "Дата рождения клиента": "Customer_date_of_birth",
+        "Пол клиента": "Customer_gender",
+        "Вид клиента": "Customer_Type",
+        "Сумма товарного кредита": "Product_Credit_Amount",
+        "Валюта товарного кредита": "Commodity_loan_currency",
+        "КПП": "Gearbox",
+        "Интерес": "Interest",
+        "Головная организация": "Head_organization",
+        "Правовая форма": "Legal_form",
+        "_База1С": "_Base1C",
+        "_Ключ1С": "_Klyuch1S",
+        "_Зал": "_Hall",
+        "_Бригада": "__Brigade",
+        "ReplGuid": "Replguid",
+        "_Seller": "_Seller",
+        "_Правовая форма": "_Legal_form",
+        "_Печать примечания при отгрузке": "_Print_notes_on_shipment",
+        "_Орг от кого": "_Org_from_whom",
+        "_Орг для кого": "_Org_for_whom",
+        "ОКФС": "OKFS",
+        "ОКОПФ": "OKOPF",
+        "_Неполная отгрузка": "__Incomplete_shipment",
+        "_ОКСЭТ_Ключ": "_OKSET_Klyuch",
+        "_Время работы с": "_Time_of_work_with",
+        "_Время работы по": "_Time_of_work_on",
+        "_Подпитка": "_Feeding",
+        "_Прием без заявки": "_Reception_without_application",
+        "_Ручной ввод количества": "_Manually_enter_quantity",
+        "_Сверка с заявкой на приход": "_Confirmation_with_the_application_for_arrival",
+        "_Вкл. проверку дог. ответ.хран": "__On_check_dog_answer_keeping",
+        "_1С_GUID": "_1C_GUID",
+        "_Грузополучатель": "_Consignee",
+        "_ГрузополучательАдрес": "__Consignee_Address",
+        "_ЭтоГруппа": "_This_group",
+        "_ClientIDD": "_ClientIDD",
+        "_УдаленныйРегион": "_RemoteRegion",
+        "_3plClient": "_3plClient",
+        "_ПроцентОтклонения": "_Percent_Deviation",
+        "_Транспортная компания": "_Transport_company",
+        "_Поставщик": "_The_supplier",
+        "_Запретить объединение": "_Prohibit_merging",
+        "_ПроцентОтклоненияПриОтгрузке": "_Percentage_Deviation_On_Shipment",
+        "_Приоритет": "_A_priority",
+        "_Не запрашивать габариты паллеты": "_Do_not_request_pallet_dimensions",
+        "_Не выводить этикетку А4": "_Do_not_display_the_A4_label",
+        "_Не создавать задание УПАК": "_Do_not_create_an_UPAK_assignment",
+        "_АвтоПеремПослеРАЗГР": "_AutoPere_After_AFTER",
+        "_Путь выгрузки остатков": "__Way_of_unloading_residues",
+        "_Фургон": "_Van",
+        "_Очередность доставки": "__Delivery_Order",
+        "_Разрешить пропуск УПАК": "_Allow_UPAK_pass",
+        "_СФ Адрес": "__Address",
+        "_СФ Название": "__Title",
+        "_СФ Печатать": "__Print",
+        "_Банк": "_Bank",
+        "_Банк город": "_Bank_city",
+        "_Банк РС": "_Bank_RS",
+        "_Банк КС": "_Bank_KS",
+        "_Банк БИК": "_BIK_BIK",
+        "_Code": "_Code",
+        "_Пакет_документов": "_DocumentPackage",
+        "_Дата импорта из КИС": "_Date_of_import_from_CIS",
+        "_Группа": "_Group",
+        "_Группа код": "_Group_code",
+        "_Клиент": "_Customer",
+        "_Рейс": "_Flight",
+        "_ImportTimeStamp": "_ImportTimeStamp",
+        "Адрес Код": "Address_Code",
+        "Адрес Регион код": "Address_Region_Code",
+        "Адрес Регион сокр": "Address_Region_abbr",
+        "Адрес Район": "Address_District",
+        "Адрес Район сокр": "Address_Sokr_District",
+        "Адрес Город": "Address_City",
+        "Адрес Город сокр": "Address_City_Sokr",
+        "Адрес Нас.пункт": "Address_Settlement",
+        "Адрес Нас.пункт сокр": "Address_Settlement",
+        "Адрес Улица": "Street_Address",
+        "Адрес Улица сокр": "Address_Street_Socr",
+        "Адрес Дом": "Address_House",
+        "Адрес Дом сокр": "Address_House_Socr",
+        "Адрес Корпус": "Address_Housing",
+        "Адрес Квартира": "Address_Apartment",
+        "Адрес Индекс": "Address_Zip",
+        "_Срок доставки": "_Delivery_period"
     }
 }
