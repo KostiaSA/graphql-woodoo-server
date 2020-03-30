@@ -38,6 +38,7 @@ export class AdminApiApolloServer {
       database_native_tables(db_name:String):JSON
 
       database_tables(db_name:String):JSON
+      translate(non_en_words:JSON):JSON
 
   }
 
@@ -102,6 +103,9 @@ export class AdminApiApolloServer {
                 },
                 native_table_columns: async (parent: any, args: { db_name: string, table_schema: string, table_name: string }) => {
                     return this.app.schema.getDatabaseNativeTableColumns(args.db_name, args.table_schema, args.table_name);
+                },
+                translate: async (parent: any, args: { non_en_words: string }) => {
+                    return await this.app.schema.translate(args.non_en_words);
                 },
             },
 

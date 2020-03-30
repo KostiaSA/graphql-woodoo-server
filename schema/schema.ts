@@ -2,8 +2,9 @@ import { ISchema, ITable, IDatabase, IColumn, DatabaseType, GraphqlType, IDataba
 import { GraphQLSchema, GraphQLObjectType, GraphQLObjectTypeConfig, Thunk, isType, GraphQLResolveInfo } from "graphql";
 import { Args, SqlResolver } from "../resolver/SqlResolver";
 import { stringAsSql } from "../utils/stringAsSql";
-var fs = require('fs');
-var mssql = require('mssql')
+const fs = require('fs');
+const mssql = require('mssql')
+const translate = require('translation-google');
 
 export interface IWhereOper {
     data_types?: GraphqlType[];
@@ -83,8 +84,55 @@ export class Schema {
         this.info = {} as any;
 
         this.loadFromToJson();
+
+        if (!this.info.databases)
+            this.info.databases = [];
+        if (!this.info.tables)
+            this.info.tables = [];
+        if (!this.info.translate)
+            this.info.translate = {};
+
         this.saveToJson();
         this.createCache();
+
+    }
+
+    async translate(non_en_words_json: string): Promise<any> {
+
+        //return await translate('название');
+
+        let non_en_words = JSON.parse(non_en_words_json);
+        let to_google_translate: string[] = [];
+
+        for (let word of non_en_words) {
+            if (!this.info.translate[word])
+                to_google_translate.push(word);
+        }
+
+        if (to_google_translate.length > 0) {
+            console.log("to_google_translate", to_google_translate);
+
+            //console.log(await translate(to_google_translate.join("\n")));
+            let trans_res = (await translate(to_google_translate.join("\n"))).text.split("\n");
+            console.log("trans_res", trans_res);
+
+            let index = 0;
+            for (let translated of trans_res) {
+                console.log("translated", translated);
+                translated = translated.replace(/[^_a-zA-Z0-9+]+/gi, '_');
+                if ("0123456789".indexOf(translated[0]) > -1)
+                    translated = "_" + translated;
+                this.info.translate[non_en_words[index]] = translated;
+                index++;
+            }
+            this.saveToJson();
+        }
+
+        let ret: any = {};
+        for (let word of non_en_words) {
+            ret[word] = this.info.translate[word]
+        }
+        return ret;
 
     }
 

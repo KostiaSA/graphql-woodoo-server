@@ -1104,5 +1104,8 @@
             "disabled": false,
             "version": 2
         }
-    ]
+    ],
+    "translate": {
+        "ключ": "key"
+    }
 }

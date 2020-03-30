@@ -7,10 +7,12 @@
     "debug-in-chrome": "node --inspect   --inspect-brk build/voodoo-server/server.js"
   },
   "dependencies": {
+    "@types/google-translate-api": "^2.3.0",
     "@types/node": "^13.7.4",
     "apollo-server": "^2.10.1",
     "graphql": "^14.6.0",
     "graphql-type-json": "^0.3.1",
-    "mssql": "^6.1.0"
+    "mssql": "^6.1.0",
+    "translation-google": "^0.2.1"
   }
 }
